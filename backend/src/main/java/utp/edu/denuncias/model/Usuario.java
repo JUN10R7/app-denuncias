@@ -13,11 +13,11 @@ import java.util.List;
  * Entidad JPA que representa un usuario del sistema.
  * Contiene información personal, credenciales y relaciones con denuncias y tokens.
  */
-@Data  // Genera automáticamente getters, setters, equals, hashCode y toString
-@Entity  // Marca esta clase como entidad JPA persistente
-@NoArgsConstructor  // Constructor sin argumentos
-@AllArgsConstructor  // Constructor con todos los argumentos
-@Builder  // Permite usar patrón builder para crear instancias fácilmente
+@Data
+@Entity
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Usuario {
 
     /**
@@ -62,7 +62,7 @@ public class Usuario {
      * Debe ser único y no puede ser nulo.
      */
     @Column(unique = true, nullable = false)
-    private String correo;
+    private String email;
 
     /**
      * Rol del usuario en el sistema.
@@ -72,6 +72,15 @@ public class Usuario {
     private Rol rol;
 
     /**
+     * Indica si el usuario está habilitado o no en el sistema.
+     * Este atributo puede ser utilizado para controlar el acceso de un usuario
+     * sin necesidad de eliminarlo del registro de la base de datos.
+     * Por defecto, el valor se inicializa en true, habilitando al usuario.
+     */
+    @Builder.Default
+    private boolean enabled = true;
+
+    /**
      * Relación uno a muchos con la entidad Denuncia.
      * Un usuario puede tener múltiples denuncias.
      * Cascade ALL asegura que operaciones sobre Usuario se propaguen a sus denuncias.
@@ -79,11 +88,4 @@ public class Usuario {
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
     private List<Denuncia> denuncias;
 
-    /**
-     * Relación uno a muchos con la entidad Token.
-     * Un usuario puede tener múltiples tokens (sesiones activas, por ejemplo).
-     * Cascade ALL asegura que operaciones sobre Usuario se propaguen a sus tokens.
-     */
-    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
-    private List<Token> tokens;
 }

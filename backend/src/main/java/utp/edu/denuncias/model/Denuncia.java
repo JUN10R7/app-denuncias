@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import utp.edu.denuncias.enums.Categoria;
+import utp.edu.denuncias.enums.Estado;
 
 import java.time.LocalDateTime;
 
@@ -12,11 +14,11 @@ import java.time.LocalDateTime;
  * Entidad JPA que representa una denuncia en el sistema.
  * Mapea a una tabla en la base de datos que almacena información sobre denuncias realizadas por usuarios.
  */
-@Data  // Genera automáticamente getters, setters, equals, hashCode y toString
-@Entity  // Marca esta clase como una entidad JPA (persistente)
-@NoArgsConstructor  // Genera un constructor sin argumentos
-@AllArgsConstructor  // Genera un constructor con todos los argumentos
-@Builder  // Habilita el patrón builder para crear instancias de esta clase
+@Data
+@Entity
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Denuncia {
 
     /**
@@ -35,7 +37,7 @@ public class Denuncia {
     /**
      * Descripción detallada de la denuncia.
      */
-    private String descripcion;
+    private String description;
 
     /**
      * Lugar donde ocurrió el hecho denunciado.
@@ -46,7 +48,8 @@ public class Denuncia {
      * Categoría de la denuncia (por ejemplo, violencia, robo, etc.).
      * Guardado como texto simple.
      */
-    private String categoria;
+    @Enumerated(EnumType.STRING)
+    private Categoria categoria;
 
     /**
      * Estado actual de la denuncia.
@@ -54,7 +57,7 @@ public class Denuncia {
      * Por defecto, la denuncia comienza con estado PENDIENTE.
      */
     @Enumerated(EnumType.STRING)
-    private EstadoDenuncia estado = EstadoDenuncia.PENDIENTE;
+    private Estado estado = Estado.PENDIENTE;
 
     /**
      * Fecha y hora en que fue creada la denuncia.
@@ -71,14 +74,4 @@ public class Denuncia {
     @JoinColumn(name = "usuario_id")
     private Usuario usuario;
 
-    /**
-     * Enumeración que define los posibles estados de una denuncia.
-     */
-    public enum EstadoDenuncia {
-        PENDIENTE,   // Denuncia recién creada, aún no procesada
-        EN_PROCESO,  // Denuncia que está siendo investigada o atendida
-        RESUELTO,    // Denuncia que ha sido solucionada o cerrada satisfactoriamente
-        ARCHIVADO,   // Denuncia archivada sin resolución inmediata
-        RECHAZADO    // Denuncia que ha sido descartada o invalidada
-    }
 }

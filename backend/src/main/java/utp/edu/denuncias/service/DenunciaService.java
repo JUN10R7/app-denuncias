@@ -35,9 +35,9 @@ public class DenunciaService {
 
         Denuncia d = Denuncia.builder()
                 .titulo(request.titulo())
-                .descripcion(request.descripcion())
+                .description(request.description())
                 .lugar(request.lugar())
-                .categoria(request.categoria().toString())
+                .categoria(request.categoria())
                 .usuario(user)
                 .build();
         return buildDenunciaResponse(denunciaRepository.save(d));
@@ -81,19 +81,20 @@ public class DenunciaService {
     }
 
     /**
-     * Construye un objeto {@link DenunciaResponse} a partir de una entidad {@link Denuncia} dada.
+     * Builds a {@link DenunciaResponse} object based on the provided {@link Denuncia} entity.
      *
-     * @param denuncia la entidad {@link Denuncia} a partir de la cual se construye la respuesta.
-     *                 Contiene detalles como título, descripción, ubicación, categoría,
-     *                 estado, nombre de usuario asociado y fecha de creación.
-     * @return
+     * @param denuncia the {@link Denuncia} entity containing the necessary information
+     *                 to populate the response, including title, description, location,
+     *                 category, status, username, and creation date.
+     * @return a {@link DenunciaResponse} object containing the structured response data
+     *         derived from the given {@link Denuncia} entity.
      */
     private DenunciaResponse buildDenunciaResponse(Denuncia denuncia) {
         return DenunciaResponse.builder()
                 .titulo(denuncia.getTitulo())
-                .descripcion(denuncia.getDescripcion())
+                .description(denuncia.getDescription())
                 .lugar(denuncia.getLugar())
-                .categoria(denuncia.getCategoria())
+                .categoria(denuncia.getCategoria().name())
                 .estado(denuncia.getEstado().toString())
                 .username(denuncia.getUsuario().getUsername())
                 .fecha(denuncia.getCreatedDate().toString())

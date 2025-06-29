@@ -8,11 +8,9 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
-import utp.edu.denuncias.model.Token;
 import utp.edu.denuncias.model.Usuario;
 
 import java.security.Key;
-import java.time.LocalDateTime;
 import java.util.Date;
 
 @Component
@@ -44,29 +42,20 @@ public class JwtUtil {
      * - El rol del usuario como reclamo adicional ("rol").
      * - La fecha de expiración calculada según el valor de configuración.
      * - Firma el token con la clave secreta usando HS512.
-     *
+     * <p>
      * Además, retorna un objeto Token con el JWT y metadatos para seguimiento
      * como fechas de creación y expiración, y estado (revocado o no).
      *
      * @param user Usuario para quien se genera el token
      * @return Token con el JWT generado y metadatos asociados
      */
-    public Token generateToken(Usuario user) {
-        return Token.builder()
-                .token(
-                        Jwts.builder()
-                                .setSubject(user.getDni())               // DNI usado como subject
-                                .claim("rol", user.getRol())             // Añade rol como claim
-                                .setExpiration(new Date(System.currentTimeMillis() + expiration)) // Expiración
-                                .signWith(secretKey, SignatureAlgorithm.HS512)  // Firma con HS512
-                                .compact()
-                )
-                .usuario(user)
-                .expired(false)      // Estado inicial no expirado
-                .revoked(false)      // Estado inicial no revocado
-                .createdAt(LocalDateTime.now())  // Fecha creación token
-                .expiresAt(LocalDateTime.now().plusSeconds(expiration / 1000)) // Fecha expiración
-                .build();
+    public String generateToken(Usuario user) {
+        return Jwts.builder()
+                .setSubject(user.getUsername())             // DNI usado como subject
+                .claim("rol", user.getRol().name())             // Añade rol como claim
+                .setExpiration(new Date(System.currentTimeMillis() + expiration)) // Expiración
+                .signWith(secretKey, SignatureAlgorithm.HS512)  // Firma con HS512
+                .compact();
     }
 
     /**
@@ -109,8 +98,9 @@ public class JwtUtil {
      * Si no hay usuario autenticado, retorna null.
      *
      * @return Nombre de usuario autenticado o null
+     *
      */
-    public String getCurrentUsername() {
+    public static String getCurrentUsername() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication != null && authentication.isAuthenticated()) {
             return authentication.getName();  // Retorna username autenticado

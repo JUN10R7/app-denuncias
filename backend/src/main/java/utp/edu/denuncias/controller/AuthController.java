@@ -5,7 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
-import utp.edu.denuncias.dto.AuthRegisterRequest;
+import utp.edu.denuncias.dto.UsuarioRequest;
 import utp.edu.denuncias.dto.AuthRequest;
 import utp.edu.denuncias.dto.AuthResponse;
 import utp.edu.denuncias.service.AuthService;
@@ -23,7 +23,7 @@ public class AuthController {
      * @return una cadena de texto confirmando que el usuario ha sido registrado correctamente
      */
     @PostMapping("/registro")
-    public String registrar(@RequestBody AuthRegisterRequest auth){
+    public String registrar(@RequestBody UsuarioRequest auth){
         authService.register(auth);
         return "Usuario registrado correctamente";
     }

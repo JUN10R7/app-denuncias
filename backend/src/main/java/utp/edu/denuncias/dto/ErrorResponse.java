@@ -7,24 +7,13 @@ import java.time.LocalDateTime;
  * Contiene información relevante sobre el error ocurrido.
  */
 public record ErrorResponse(
-        /**
-         * Mensaje descriptivo del error que se quiere comunicar.
-         */
+
         String message,
 
-        /**
-         * Tipo o nombre del error (por ejemplo, "NotFoundException", "ValidationError", etc.).
-         */
         String error,
 
-        /**
-         * Código HTTP del estado de la respuesta (por ejemplo, 404, 500).
-         */
         int status,
 
-        /**
-         * Marca de tiempo (fecha y hora) en que ocurrió el error.
-         */
         LocalDateTime timestamp
 ) {
     /**

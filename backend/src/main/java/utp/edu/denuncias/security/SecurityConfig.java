@@ -3,6 +3,7 @@ package utp.edu.denuncias.security;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
@@ -12,6 +13,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
@@ -61,7 +63,32 @@ public class SecurityConfig {
                 .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .userDetailsService(userDetailsService)
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
+                .exceptionHandling(ex -> ex.accessDeniedHandler(accessDeniedHandler()))
                 .build();
+    }
+
+    /**
+     * Proporciona un bean de tipo {@link AccessDeniedHandler} encargado de manejar los casos
+     * en los que un usuario intenta acceder a un recurso para el cual no tiene permisos.
+     * Establece un estado HTTP 403 (Forbidden) y devuelve una respuesta en formato JSON
+     * que contiene detalles sobre el error.
+     *
+     * @return una instancia configurada de {@link AccessDeniedHandler} que gestiona las respuestas
+     *         en casos de acceso denegado.
+     */
+    @Bean
+    public AccessDeniedHandler accessDeniedHandler() {
+        return (request, response, accessDeniedException) -> {
+            response.setStatus(HttpStatus.FORBIDDEN.value());
+            response.setContentType("application/json");
+            response.getWriter().write("""
+            {
+                "error": "Acceso denegado",
+                "message": "No tienes permisos para acceder a este recurso.",
+                "status": 403
+            }
+        """);
+        };
     }
 
     /**

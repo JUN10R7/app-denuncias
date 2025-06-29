@@ -18,5 +18,5 @@ public enum Rol {
     /**
      * Rol de moderador con permisos intermedios, generalmente para supervisar contenidos o usuarios.
      */
-    MODERATOR
+    MOD
 }

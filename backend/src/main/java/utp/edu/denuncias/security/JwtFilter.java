@@ -7,10 +7,8 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
-import utp.edu.denuncias.repository.TokenRepository;
 
 import java.io.IOException;
-import java.time.LocalDateTime;
 
 @Component
 @RequiredArgsConstructor
@@ -22,12 +20,8 @@ public class JwtFilter implements Filter {
     // Servicio para cargar detalles del usuario basado en username
     private final UserDetailsServiceImpl userDetailsService;
 
-    // Repositorio para consultar tokens en base de datos (por ejemplo, para verificar revocación o expiración)
-    private final TokenRepository tokenRepository;
-
     /**
      * Método que intercepta cada solicitud HTTP entrante para validar el token JWT.
-     *
      * Pasos:
      * 1. Obtiene el encabezado "Authorization" de la solicitud HTTP.
      * 2. Verifica que el encabezado no sea nulo y que comience con "Bearer ".
@@ -62,16 +56,8 @@ public class JwtFilter implements Filter {
             // Extrae el token JWT (sin el prefijo "Bearer ")
             String token = auth.substring(7);
 
-            // Consulta la base para verificar que el token no esté expirado, revocado y su fecha de expiración sea futura
-            boolean isTokenValid = tokenRepository.findByToken(token)
-                    .map(tokenEntity ->
-                            !tokenEntity.isExpired() &&
-                                    !tokenEntity.isRevoked() &&
-                                    tokenEntity.getExpiresAt().isAfter(LocalDateTime.now())
-                    ).orElse(false);
-
-            // Valida la estructura y firma del token JWT con JwtUtil
-            if (isTokenValid && jwtUtil.validateToken(token)) {
+            // Válida la estructura y firma del token JWT con JwtUtil
+            if (jwtUtil.validateToken(token)) {
                 // Extrae el nombre de usuario del token
                 String username = jwtUtil.extractUsername(token);
 

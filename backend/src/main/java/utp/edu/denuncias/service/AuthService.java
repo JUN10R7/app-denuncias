@@ -6,11 +6,9 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import utp.edu.denuncias.dto.AuthRegisterRequest;
+import utp.edu.denuncias.dto.UsuarioRequest;
 import utp.edu.denuncias.dto.AuthRequest;
-import utp.edu.denuncias.model.Token;
 import utp.edu.denuncias.model.Usuario;
-import utp.edu.denuncias.repository.TokenRepository;
 import utp.edu.denuncias.repository.UserRepository;
 import utp.edu.denuncias.security.JwtUtil;
 
@@ -18,7 +16,6 @@ import utp.edu.denuncias.security.JwtUtil;
 @RequiredArgsConstructor
 public class AuthService {
     private final JwtUtil jwtUtil;
-    private final TokenRepository tokenRepository;
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final AuthenticationManager authenticationManager;
@@ -30,7 +27,7 @@ public class AuthService {
      *                como el nombre de usuario y la contraseña, necesarios para el registro.
      * @throws IllegalArgumentException si el nombre de usuario ya está en uso.
      */
-    public void register(AuthRegisterRequest request) {
+    public void register(UsuarioRequest request) {
         if (userRepository.findByUsername(request.username()).isPresent()) {
             throw new IllegalArgumentException("El nombre de usuario ya está en uso");
         }
@@ -41,24 +38,19 @@ public class AuthService {
                 .username(request.username())
                 .password(passwordEncoder.encode(request.password()))
                 .dni(request.dni())
-                .correo(request.correo())
+                .email(request.email())
                 .rol(request.rol())
                 .build();
         userRepository.save(u);
     }
 
     /**
-     * Maneja el proceso de inicio de sesión de un usuario autentificando sus credenciales,
-     * generando un token JWT, y almacenándolo en la base de datos.
+     * Autentica a un usuario en el sistema utilizando sus credenciales y genera un token JWT
+     * en caso de autenticación exitosa.
      *
-     * @param request un objeto {@link AuthRequest} que contiene el nombre de usuario y la contraseña
-     *                del usuario que desea autenticarse.
-     * @return una cadena de texto que representa el token JWT generado tras la autenticación exitosa.
-     * @throws UsernameNotFoundException si el usuario
-     *         no se encuentra en el sistema.
-     * @throws org.springframework.security.authentication.BadCredentialsException si las credenciales
-     *         proporcionadas no son válidas.
-     */
+     * @param request un objeto {@link AuthRequest} que contiene el nombre de usuario
+     *                y la contraseña para la autenticación.
+     * @return un token JWT generado para el usuario*/
     public String login(AuthRequest request) {
 
         authenticationManager.authenticate(
@@ -68,10 +60,8 @@ public class AuthService {
         Usuario usuario = userRepository.findByUsername(request.username())
                 .orElseThrow(() -> new UsernameNotFoundException("Usuario no encontrado"));
 
-        Token token = jwtUtil.generateToken(usuario);
-        tokenRepository.save(token);
 
-        return token.getToken();
+        return jwtUtil.generateToken(usuario);
     }
 
 }

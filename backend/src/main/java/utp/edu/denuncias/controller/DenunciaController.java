@@ -6,7 +6,6 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.web.bind.annotation.*;
 import utp.edu.denuncias.dto.DenunciaRequest;
 import utp.edu.denuncias.dto.DenunciaResponse;
-import utp.edu.denuncias.model.Denuncia;
 import utp.edu.denuncias.service.DenunciaService;
 
 import java.util.List;

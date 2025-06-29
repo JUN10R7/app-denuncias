@@ -9,25 +9,18 @@ import lombok.Builder;
 @Builder
 public record DenunciaResponse(
 
-        /** Título de la denuncia */
         String titulo,
 
-        /** Descripción detallada de la denuncia */
-        String descripcion,
+        String description,
 
-        /** Lugar o ubicación donde ocurrió la denuncia */
         String lugar,
 
-        /** Categoría de la denuncia (e.g., violencia, robo, etc.) */
         String categoria,
 
-        /** Estado actual de la denuncia (e.g., Registrada, En proceso, Cerrada) */
         String estado,
 
-        /** Nombre de usuario del ciudadano que registró la denuncia */
         String username,
 
-        /** Fecha en que se registró la denuncia */
         String fecha
 ) {
 }
