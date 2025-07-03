@@ -10,10 +10,6 @@ import utp.edu.denuncias.enums.Estado;
 
 import java.time.LocalDateTime;
 
-/**
- * Entidad JPA que representa una denuncia en el sistema.
- * Mapea a una tabla en la base de datos que almacena información sobre denuncias realizadas por usuarios.
- */
 @Data
 @Entity
 @NoArgsConstructor
@@ -56,6 +52,7 @@ public class Denuncia {
      * Se almacena como un string que representa uno de los valores del enum EstadoDenuncia.
      * Por defecto, la denuncia comienza con estado PENDIENTE.
      */
+    @Builder.Default
     @Enumerated(EnumType.STRING)
     private Estado estado = Estado.PENDIENTE;
 
@@ -63,6 +60,7 @@ public class Denuncia {
      * Fecha y hora en que fue creada la denuncia.
      * Se inicializa con la fecha y hora actuales al momento de crear la instancia.
      */
+    @Builder.Default
     private LocalDateTime createdDate = LocalDateTime.now();
 
     /**
@@ -73,5 +71,16 @@ public class Denuncia {
     @ManyToOne
     @JoinColumn(name = "usuario_id")
     private Usuario usuario;
+
+    /**
+     * Relación muchos a uno con la entidad Usuario.
+     * Representa el moderador asignado a la denuncia.
+     * Se une por la columna "usuario_id" en la tabla Denuncia.
+     * Por defecto, no hay moderador asignado (valor inicial es null).
+     */
+    @Builder.Default
+    @ManyToOne
+    @JoinColumn(name = "mod_id")
+    private Usuario modAsignado = null;
 
 }

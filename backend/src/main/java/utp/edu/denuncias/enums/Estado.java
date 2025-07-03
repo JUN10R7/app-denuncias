@@ -6,7 +6,8 @@ package utp.edu.denuncias.enums;
  */
 public enum Estado {
     /**
-     * Representa el estado inicial de una denuncia, indicando que aún no ha sido
+     * Representa el estado de una denuncia que aún no ha sido atendida, evaluada
+     * o procesada. Indica que está pendiente de una acción inicial.
      */
     PENDIENTE,
     /**

@@ -88,4 +88,30 @@ public class Usuario {
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
     private List<Denuncia> denuncias;
 
+    /**
+     * Relación uno a muchos con la entidad Denuncia.
+     * Representa las denuncias asignadas a un moderador del sistema.
+     * Este atributo almacena las denuncias en las que el moderador actúa como encargado.
+     */
+    @OneToMany(mappedBy = "modAsignado")
+    private List<Denuncia> denunciasAsignadas;
+
+    /**
+     * Lista de solicitudes asignadas al usuario como revisor.
+     *
+     * Representa una relación uno a muchos con la entidad Solicitud,
+     * donde un usuario desempeña el rol de revisor de dichas solicitudes.
+     * El atributo "mappedBy" indica que la relación está mapeada por el campo "revisor"
+     * en la entidad Solicitud.
+     */
+    @OneToMany(mappedBy = "revisor")
+    private List<Solicitud> solicitudesRecibidas;
+
+    /**
+     * Lista de solicitudes enviadas por el usuario actual.
+     * Representa una relación uno a muchos con la entidad Solicitud,
+     * donde este usuario actúa como autor de las solicitudes.
+     */
+    @OneToMany(mappedBy = "autor")
+    private List<Solicitud> solicitudesEnviadas;
 }

@@ -18,7 +18,5 @@ public record DenunciaRequest (
         String lugar,
         @NotBlank(message = "El campo 'categoria' es obligatorio")
         @Enumerated(EnumType.STRING)  // Indica que el enum se debe manejar como String
-        Categoria categoria,
-        @NotBlank(message = "El campo 'user' es obligatorio")
-        String username
+        Categoria categoria
 ) {}

@@ -52,7 +52,6 @@ public class JwtUtil {
     public String generateToken(Usuario user) {
         return Jwts.builder()
                 .setSubject(user.getUsername())             // DNI usado como subject
-                .claim("rol", user.getRol().name())             // Añade rol como claim
                 .setExpiration(new Date(System.currentTimeMillis() + expiration)) // Expiración
                 .signWith(secretKey, SignatureAlgorithm.HS512)  // Firma con HS512
                 .compact();
@@ -104,6 +103,14 @@ public class JwtUtil {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication != null && authentication.isAuthenticated()) {
             return authentication.getName();  // Retorna username autenticado
+        }
+        return null;
+    }
+
+    public static String getCurrentUserRole() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication != null && authentication.isAuthenticated()) {
+            return authentication.getAuthorities().toString();
         }
         return null;
     }
