@@ -118,6 +118,23 @@ public class DenunciaService {
         return DenunciaResponse.from(denunciaRepository.findAllByModAsignadoIdAndEstadoIsNot(user.getId(), Estado.ARCHIVADO));
     }
 
+    /**
+     * Edita una denuncia existente asociada al usuario autenticado, siempre que
+     * se encuentre en estado PENDIENTE. Actualiza los campos de la denuncia con
+     * los valores proporcionados en la solicitud.
+     *
+     * @param id Identificador único de la denuncia a editar.
+     * @param request Objeto que contiene los nuevos datos para la denuncia,
+     * incluyendo título, descripción, lugar y categoría.
+     * @return Una instancia de {@code DenunciaResponse} que representa los datos
+     * actualizados de la denuncia.
+     * @throws UsernameNotFoundException Si no se encuentra el usuario autenticado
+     * asociado a la solicitud.
+     * @throws RuntimeException Si no existe una denuncia asociada al usuario
+     * autenticado con el ID proporcionado.
+     * @throws AccessDeniedException Si la denuncia no se encuentra en estado
+     * PENDIENTE y, por tanto, no puede ser editada.
+     */
     @Transactional
     public DenunciaResponse editarDenuncia(Long id, DenunciaRequest request) {
         var user = userRepository.findByUsername(JwtUtil.getCurrentUsername())

@@ -3,6 +3,7 @@ package utp.edu.denuncias.controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import utp.edu.denuncias.dto.NotificationResponse;
 import utp.edu.denuncias.dto.UsuarioResponse;
 import utp.edu.denuncias.dto.UsuarioUpdateRequest;
 import utp.edu.denuncias.dto.UsuarioUpdateResponse;
@@ -111,5 +112,26 @@ public class UsuarioController {
     @DeleteMapping("/usuario")
     public void desactivarUsuario() {
         usuarioService.desactivarUsuario();
+    }
+
+    /**
+     * Recupera una lista de notificaciones asociadas al usuario actualmente autenticado.
+     *
+     * @return un {@link ResponseEntity} que contiene una lista de objetos {@link NotificationResponse},
+     *         cada uno representando una notificación del usuario autenticado.
+     */
+    @GetMapping("/usuario/notificaciones")
+    public ResponseEntity<List<NotificationResponse>> obtenerMisNotificaciones() {
+        return ResponseEntity.ok(usuarioService.obtenerNotificaciones());
+    }
+
+    /**
+     * Marca una notificación específica como leída, identificada por su ID.
+     *
+     * @param id identificador único de la notificación que se desea marcar como leída
+     */
+    @PutMapping("/usuario/notificaciones/{id}")
+    public void marcarNotificationLeida(@PathVariable Long id) {
+        usuarioService.marcarNotificationLeida(id);
     }
 }

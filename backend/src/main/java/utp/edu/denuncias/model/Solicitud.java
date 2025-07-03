@@ -42,6 +42,15 @@ public class Solicitud {
     private String msg;
 
     /**
+     * Representa la respuesta asociada a la solicitud.
+     * Este campo puede ser utilizado para almacenar información
+     * sobre la resolución o el comentario en respuesta a la misma.
+     * Por defecto, su valor inicial es null.
+     */
+    @Builder.Default
+    private String respuesta = null;
+
+    /**
      * Relación muchos a uno con la entidad Denuncia.
      * Representa la denuncia asociada a esta solicitud.
      * Este vínculo se define a través de la columna "denuncia_id" en la base de datos.
@@ -64,7 +73,7 @@ public class Solicitud {
      * El revisor tiene la responsabilidad de revisar y gestionar la solicitud.
      */
     @ManyToOne
-    @JoinColumn(name = "revisor_id")
+    @JoinColumn(name = "revisor_id", nullable = true)
     private Usuario revisor;
 
     /**
@@ -91,4 +100,12 @@ public class Solicitud {
      */
     @Builder.Default
     private LocalDateTime createdDate = LocalDateTime.now();
+
+    /**
+     * Fecha y hora en que se considera terminada o finalizada la solicitud.
+     * Este campo es opcional y su valor inicial es null, lo que indica que
+     * la solicitud no tiene una fecha de finalización definida al momento de su creación.
+     */
+    @Builder.Default
+    private LocalDateTime endDate = null;
 }

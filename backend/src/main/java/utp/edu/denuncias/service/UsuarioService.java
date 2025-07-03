@@ -4,6 +4,7 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import utp.edu.denuncias.dto.NotificationResponse;
 import utp.edu.denuncias.dto.UsuarioResponse;
 import utp.edu.denuncias.dto.UsuarioUpdateRequest;
 import utp.edu.denuncias.dto.UsuarioUpdateResponse;
@@ -25,6 +26,7 @@ public class UsuarioService {
      */
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
+    private final NotificationService notificationService;
 
     /**
      * Obtiene una lista de usuarios en el sistema y los representa como objetos {@code UsuarioResponse}.
@@ -153,5 +155,30 @@ public class UsuarioService {
                 .orElseThrow(() -> new RuntimeException("No se pudo obtener el usuario autenticado"));
         usuario.setEnabled(false);
         userRepository.save(usuario);
+    }
+
+    /**
+     * Obtiene la lista de notificaciones del usuario actualmente autenticado.
+     *
+     * @return Una lista de objetos {@code NotificationResponse} que representan las notificaciones asociadas
+     * al usuario autenticado.
+     * @throws RuntimeException Si no se puede obtener el usuario autenticado.
+     */
+    public List<NotificationResponse> obtenerNotificaciones() {
+        var user = userRepository.findByUsername(JwtUtil.getCurrentUsername())
+                .orElseThrow(() -> new RuntimeException("No se pudo obtener el usuario autenticado"));
+        return notificationService.obtenerNotificaciones(user.getId());
+    }
+
+    /**
+     * Marca una notificación específica como leída para el usuario actualmente autenticado.
+     *
+     * @param id Identificador único de la notificación que se desea marcar como leída.
+     * @throws RuntimeException Si no se puede obtener el usuario autenticado.
+     */
+    public void marcarNotificationLeida(Long id) {
+        var user = userRepository.findByUsername(JwtUtil.getCurrentUsername())
+                .orElseThrow(() -> new RuntimeException("No se pudo obtener el usuario autenticado"));
+        notificationService.marcarComoLeida(id, user);
     }
 }
