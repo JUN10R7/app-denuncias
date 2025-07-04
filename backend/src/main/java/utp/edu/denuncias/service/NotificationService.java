@@ -80,4 +80,11 @@ public class NotificationService {
     public List<NotificationResponse> obtenerNotificaciones(Long id) {
         return NotificationResponse.from(notificationRepository.findAllByDestinatarioIdOrderByCreatedDateDesc(id));
     }
+
+    public void marcarNotificacionesRelacionadasComoVistas(Solicitud solicitud) {
+        var relacionadas = notificationRepository.findBySolicitudAndReadFalse(solicitud);
+        relacionadas.forEach(n -> n.setRead(true));
+        notificationRepository.saveAll(relacionadas);
+    }
+
 }

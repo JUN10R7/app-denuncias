@@ -1,6 +1,7 @@
 package utp.edu.denuncias.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import utp.edu.denuncias.enums.Rol;
 import utp.edu.denuncias.model.Usuario;
 import java.util.*;
 
@@ -24,4 +25,12 @@ public interface UserRepository extends JpaRepository<Usuario, Long> {
      * @return Lista de usuarios habilitados en el sistema
      */
     List<Usuario> findByEnabledTrue();
+
+    /**
+     * Devuelve una lista de usuarios que tienen el rol especificado.
+     *
+     * @param rol El rol por el cual se filtrarán los usuarios
+     * @return Lista de usuarios que poseen el rol especificado
+     */
+    List<Usuario> findAllByRol(Rol rol);
 }

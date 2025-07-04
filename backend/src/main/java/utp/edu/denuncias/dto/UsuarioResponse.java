@@ -28,7 +28,7 @@ public record UsuarioResponse(
                 .username(usuario.getUsername())
                 .email(usuario.getEmail())
                 .dni(usuario.getDni())
-                .rol(usuario.getRol().toString())
+                .rol(usuario.getRol().name())
                 .enabled(usuario.isEnabled())
                 .build();
     }

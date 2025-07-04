@@ -45,17 +45,17 @@ public interface DenunciaRepository extends JpaRepository<Denuncia, Long> {
      * @param estado Estado que será excluido de la búsqueda
      * @return Lista de denuncias que no tienen un moderador asignado y cuyo estado no es el especificado
      */
-    List<Denuncia> findAllByModAsignadoIsNullAndEstadoIsNot(Estado estado);
+    List<Denuncia> findAllByModAsignadoIsNullAndEstadoNotIn(List<Estado> estados);
 
     /**
      * Busca y devuelve todas las denuncias asignadas a un moderador específico cuyo estado
      * no coincide con el estado proporcionado.
      *
      * @param modId Identificador único del moderador al que están asignadas las denuncias
-     * @param estado Estado que será excluido de la búsqueda
+     * @param estados Estado que será excluido de la búsqueda
      * @return Lista de denuncias asignadas al moderador cuyo estado no coincide con el proporcionado
      */
-    List<Denuncia> findAllByModAsignadoIdAndEstadoIsNot(Long modId, Estado estado);
+    List<Denuncia> findAllByModAsignadoIdAndEstadoNotIn(Long modId, List<Estado> estados);
 
     /**
      * Busca y devuelve todas las denuncias asignadas a un moderador específico.

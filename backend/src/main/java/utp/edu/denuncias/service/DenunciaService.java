@@ -23,6 +23,7 @@ public class DenunciaService {
 
     private final DenunciaRepository denunciaRepository;
     private final UserRepository userRepository;
+    private final NotificationService notificationService;
 
     /**
      * Crea una nueva denuncia en el sistema basada en los datos proporcionados en la solicitud.
@@ -111,11 +112,11 @@ public class DenunciaService {
      */
     public List<DenunciaResponse> listarDenunciasMod(Boolean all) {
         if (all) {
-            return DenunciaResponse.from(denunciaRepository.findAllByModAsignadoIsNullAndEstadoIsNot(Estado.ARCHIVADO));
+            return DenunciaResponse.from(denunciaRepository.findAllByModAsignadoIsNullAndEstadoNotIn(List.of(Estado.RESUELTO, Estado.RECHAZADO)));
         }
         var user = userRepository.findByUsername(JwtUtil.getCurrentUsername())
                 .orElseThrow(() -> new UsernameNotFoundException("No se pudo obtener el usuario autenticado"));
-        return DenunciaResponse.from(denunciaRepository.findAllByModAsignadoIdAndEstadoIsNot(user.getId(), Estado.ARCHIVADO));
+        return DenunciaResponse.from(denunciaRepository.findAllByModAsignadoIdAndEstadoNotIn(user.getId(), List.of(Estado.RESUELTO, Estado.RECHAZADO)));
     }
 
     /**
@@ -141,7 +142,7 @@ public class DenunciaService {
                 .orElseThrow(() -> new UsernameNotFoundException("No se pudo obtener el usuario autenticado"));
         var denuncia = denunciaRepository.findByUsuarioIdAndId(user.getId(), id)
                 .orElseThrow(() -> new RuntimeException("La denuncia con el ID " + id + " no existe"));
-        if (denuncia.getEstado() != Estado.PENDIENTE) {
+        if (!denuncia.getEstado().equals(Estado.PENDIENTE)) {
             throw new AccessDeniedException("Solo se pueden editar denuncias en estado PENDIENTE");
         }
         denuncia.setTitulo(request.titulo());
@@ -165,6 +166,13 @@ public class DenunciaService {
         var denuncia = denunciaRepository.findById(request.id())
                 .orElseThrow(() -> new RuntimeException("La denuncia con el ID " + request.id() + " no existe"));
         denuncia.setEstado(request.estado());
+        notificationService.notificar(
+                denuncia.getUsuario(),
+                "Se ha actualizado el estado de su denuncia.",
+                "El estado de su denuncia ",
+                denuncia,
+                null
+        );
         return DenunciaResponse.from(denunciaRepository.save(denuncia));
     }
 
@@ -199,7 +207,7 @@ public class DenunciaService {
     public void eliminarDenuncia(Long id) {
         var denuncia = denunciaRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("La denuncia con el ID " + id + " no existe"));
-        if (denuncia.getEstado() != Estado.PENDIENTE) {
+        if (!denuncia.getEstado().equals(Estado.PENDIENTE)) {
             throw new AccessDeniedException("Solo se pueden eliminar denuncias con estado PENDIENTE");
         }
         denunciaRepository.deleteDenunciaByIdAndEstado(id, Estado.PENDIENTE);

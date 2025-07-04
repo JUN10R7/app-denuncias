@@ -54,7 +54,7 @@ public class SecurityConfig {
         return http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/registro","/auth/login").permitAll()
+                        .requestMatchers("/registro","/auth/login", "/enum/**").permitAll()
                         .requestMatchers("/usuario/**").hasAnyRole("USER", "MOD", "ADMIN")
                         .requestMatchers("/mod/**").hasAnyRole("MOD", "ADMIN")
                         .requestMatchers("/admin/**").hasRole("ADMIN")
@@ -78,7 +78,7 @@ public class SecurityConfig {
      */
     @Bean
     public AccessDeniedHandler accessDeniedHandler() {
-        return (request, response, accessDeniedException) -> {
+        return ( _, response, _) -> {
             response.setStatus(HttpStatus.FORBIDDEN.value());
             response.setContentType("application/json");
             response.getWriter().write("""

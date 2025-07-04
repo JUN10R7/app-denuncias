@@ -16,9 +16,9 @@ import utp.edu.denuncias.repository.UserRepository;
 import utp.edu.denuncias.security.JwtUtil;
 
 /**
- * Servicio para gestionar las solicitudes en el sistema.
- * Proporciona la lógica necesaria para crear y resolver solicitudes relacionadas
- * con denuncias, incluyendo la asignación de revisores y el cambio de estado.
+ * Servicio encargado de gestionar las operaciones relacionadas con las solicitudes.
+ * Proporciona métodos para crear nuevas solicitudes, revisar solicitudes existentes
+ * y manipular sus estados en el sistema.
  */
 @Service
 @RequiredArgsConstructor
@@ -42,6 +42,14 @@ public class SolicitudService {
      * en la base de datos.
      */
     private final DenunciaRepository denunciaRepository;
+
+    /**
+     * Servicio de notificaciones utilizado para enviar alertas o mensajes
+     * relacionados con las operaciones realizadas en el sistema.
+     * Este servicio permite informar a los usuarios sobre eventos importantes
+     * como cambios en el estado de las solicitudes o resultados de revisiones.
+     */
+    private final NotificationService notificationService;
 
     /**
      * Crea y persiste una nueva solicitud en el sistema en base a los datos proporcionados.
@@ -69,7 +77,27 @@ public class SolicitudService {
                 .revisor(revisor)
                 .tipoSolicitud(request.tipoSolicitud())
                 .build();
-        solicitudRepository.save(solicitud);
+        solicitud = solicitudRepository.save(solicitud);
+
+        if (autor.getRol().equals(Rol.ADMIN) && request.idRevisor() != null) {
+            notificationService.notificar(
+                    revisor,
+                    solicitud.getTipoSolicitud().getTitulo(),
+                    solicitud.getTipoSolicitud().getDescription(),
+                    denuncia,
+                    solicitud
+            );
+        } else if (autor.getRol().equals(Rol.MOD)) {
+            var admins = userRepository.findAllByRol(Rol.ADMIN);
+            Solicitud finalSolicitud = solicitud;
+            admins.forEach(admin -> notificationService.notificar(
+                    admin,
+                    finalSolicitud.getTipoSolicitud().getTitulo(),
+                    finalSolicitud.getTipoSolicitud().getDescription(),
+                    denuncia,
+                    finalSolicitud
+            ));
+        }
     }
 
     /**
@@ -91,6 +119,14 @@ public class SolicitudService {
         solicitud.setEstado(request.aprobado() ? Estado.RESUELTO : Estado.RECHAZADO);
         solicitud.setMsg(request.mensajeRespuesta());
         solicitud.setRevisor(revisor);
+        notificationService.notificar(
+                solicitud.getAutor(),
+                "Su solicitud ha sido " + (request.aprobado() ? "APROBADA." : "RECHAZADA."),
+                solicitud.getTipoSolicitud().getDescription(),
+                solicitud.getDenuncia(),
+                solicitud
+        );
+        notificationService.marcarNotificacionesRelacionadasComoVistas(solicitud);
         return SolicitudResponse.from(solicitudRepository.save(solicitud));
     }
 

@@ -14,6 +14,10 @@ import utp.edu.denuncias.service.AuthService;
 @RequiredArgsConstructor
 public class AuthController {
 
+    /**
+     * Servicio responsable de manejar la lógica de autenticación y registro de usuarios.
+     * Es utilizado principalmente dentro del controlador {@link AuthController}.
+     */
     private final AuthService authService;
 
     /**

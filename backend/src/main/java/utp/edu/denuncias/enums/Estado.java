@@ -1,41 +1,63 @@
 package utp.edu.denuncias.enums;
 
+import lombok.Getter;
 
 /**
- * Enumeración que define los posibles estados de una denuncia.
+ * Enumeración que define los diferentes estados que puede tener una denuncia
+ * dentro del sistema. Cada estado representa una etapa específica en el
+ * flujo de gestión de las denuncias.
  */
+@Getter
 public enum Estado {
     /**
-     * Representa el estado de una denuncia que aún no ha sido atendida, evaluada
-     * o procesada. Indica que está pendiente de una acción inicial.
+     * Representa el estado inicial de una denuncia en el sistema.
+     * Indica que la denuncia ha sido registrada pero aún no ha recibido
+     * atención o gestión por parte del equipo responsable.
      */
-    PENDIENTE,
+    PENDIENTE("Pendiente", "La denuncia aún no ha sido atendida."),
     /**
-     * Representa el estado de una denuncia que está siendo atendida o gestionada
-     * en su proceso de resolución.
+     * Estado que indica que la denuncia está en una etapa de gestión activa.
+     * Representa el momento en que se están llevando a cabo acciones para
+     * resolver la denuncia o procesar la información proporcionada.
      */
-    EN_PROCESO,
+    EN_PROCESO("En proceso", "La denuncia está siendo gestionada."),
     /**
-     * Representa el estado de una denuncia que está siendo evaluada o revisada
-     * en profundidad, generalmente como parte de un análisis más detallado
-     * antes de determinar el siguiente curso de acción.
+     * Representa el estado en el que la denuncia está siendo evaluada en detalle
+     * para determinar los próximos pasos a seguir. Indica que se encuentra en
+     * una etapa analítica del proceso de gestión.
      */
-    EN_REVISION,
+    EN_REVISION("En revisión", "La denuncia está siendo evaluada en detalle."),
     /**
-     * Representa el estado de una denuncia que ha sido resuelta, indicando que el
-     * proceso ha concluido satisfactoriamente o se ha encontrado una solución.
+     * Estado que indica que la denuncia ha sido solucionada satisfactoriamente.
      */
-    RESUELTO,
+    RESUELTO("Resuelto", "La denuncia ha sido solucionada satisfactoriamente."),
     /**
-     * Representa el estado de una denuncia que ha sido archivada, indicando que
-     * el caso ha sido cerrado y no se encuentra activo para seguimiento o resolución
-     * adicional.
+     * Estado que indica que la denuncia no será atendida o no cumple con
+     * los criterios establecidos para su gestión dentro del sistema.
      */
-    ARCHIVADO,
+    RECHAZADO("Rechazado", "La denuncia no será atendida o no cumple criterios.");
+
     /**
-     * Representa el estado de una denuncia que ha sido rechazada, indicando que
-     * no se procederá con su resolución o no cumple con los criterios necesarios
-     * para su gestión.
+     * Representa el título descriptivo asociado a un elemento dentro de la enumeración.
+     * Proporciona una breve identificación textual que describe de forma clara la naturaleza
+     * o propósito del elemento.
      */
-    RECHAZADO
+    private final String titulo;
+    /**
+     * Representa una descripción detallada asociada a un elemento específico
+     * dentro del sistema. Proporciona información adicional que explica o
+     * complementa el propósito y el significado del elemento al que está asociada.
+     */
+    private final String descripcion;
+
+    /**
+     * Constructor del enum Estado que inicializa un estado con su título y descripción.
+     *
+     * @param titulo el título descriptivo del estado
+     * @param descripcion una descripción detallada del estado
+     */
+    Estado(String titulo, String descripcion) {
+        this.titulo = titulo;
+        this.descripcion = descripcion;
+    }
 }
