@@ -41,8 +41,9 @@ public class Notification {
      * Este atributo se inicializa con el valor false, indicando que por defecto
      * las notificaciones se consideran no leídas al momento de su creación.
      */
+    @Column(name = "visto")
     @Builder.Default
-    private boolean read = false;
+    private boolean visto = false;
 
     /**
      * Fecha y hora en la que se creó la instancia de Notification.

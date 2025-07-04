@@ -145,8 +145,8 @@ public class DenunciaController {
      *
      * @param id Identificador único de la denuncia que se desea eliminar.
      */
-    @DeleteMapping("/usuario/denuncia")
-    public void eliminarDenuncia(@RequestParam("id") Long id) {
+    @DeleteMapping("/usuario/denuncia/{id}")
+    public void eliminarDenuncia(@PathVariable Long id) {
         denunciaService.eliminarDenuncia(id);
     }
 

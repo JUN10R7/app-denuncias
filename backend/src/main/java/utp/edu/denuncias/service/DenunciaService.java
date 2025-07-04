@@ -8,6 +8,7 @@ import utp.edu.denuncias.dto.DenunciaCambiarEstadoRequest;
 import utp.edu.denuncias.dto.DenunciaRequest;
 import utp.edu.denuncias.dto.DenunciaResponse;
 import utp.edu.denuncias.enums.Estado;
+import utp.edu.denuncias.enums.Rol;
 import utp.edu.denuncias.model.Denuncia;
 import utp.edu.denuncias.model.Usuario;
 import utp.edu.denuncias.repository.DenunciaRepository;
@@ -169,7 +170,7 @@ public class DenunciaService {
         notificationService.notificar(
                 denuncia.getUsuario(),
                 "Se ha actualizado el estado de su denuncia.",
-                "El estado de su denuncia ",
+                "El estado de su denuncia ha pasado a estado " + request.estado().getTitulo() + ".",
                 denuncia,
                 null
         );
@@ -191,25 +192,25 @@ public class DenunciaService {
         var moderador = userRepository.findById(idModerador)
                 .orElseThrow(() -> new RuntimeException("El moderador con el ID " + idModerador + " no existe"));
         denuncia.setModAsignado(moderador);
+        denuncia.setEstado(Estado.EN_PROCESO);
         return DenunciaResponse.from(denunciaRepository.save(denuncia));
     }
 
     /**
-     * Elimina una denuncia del sistema si cumple con los criterios establecidos.
-     * La denuncia debe existir y debe tener el estado PENDIENTE para poder ser eliminada.
+     * Elimina una denuncia cambiando su estado a ELIMINADO. Solo se permite eliminar denuncias con estado PENDIENTE.
      *
      * @param id el identificador único de la denuncia que se desea eliminar
-     *           y que debe estar registrada en el sistema.
-     * @throws RuntimeException si la denuncia con el ID proporcionado no existe en el sistema.
-     * @throws AccessDeniedException si la denuncia no se encuentra en estado PENDIENTE, ya que
-     *                                solo es posible eliminar denuncias en ese estado.
+     * @throws RuntimeException si no se encuentra una denuncia con el ID especificado
+     * @throws AccessDeniedException si la denuncia no tiene el estado PENDIENTE
      */
+    @Transactional
     public void eliminarDenuncia(Long id) {
         var denuncia = denunciaRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("La denuncia con el ID " + id + " no existe"));
-        if (!denuncia.getEstado().equals(Estado.PENDIENTE)) {
+        if (!denuncia.getEstado().equals(Estado.PENDIENTE) || JwtUtil.getCurrentUserRole().equals(Rol.ADMIN.name())) {
             throw new AccessDeniedException("Solo se pueden eliminar denuncias con estado PENDIENTE");
         }
-        denunciaRepository.deleteDenunciaByIdAndEstado(id, Estado.PENDIENTE);
+        denuncia.setEstado(Estado.ELIMINADO);
+        denunciaRepository.save(denuncia);
     }
 }

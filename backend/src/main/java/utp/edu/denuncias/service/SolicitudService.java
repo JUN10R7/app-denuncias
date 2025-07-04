@@ -15,6 +15,8 @@ import utp.edu.denuncias.repository.SolicitudRepository;
 import utp.edu.denuncias.repository.UserRepository;
 import utp.edu.denuncias.security.JwtUtil;
 
+import java.time.LocalDateTime;
+
 /**
  * Servicio encargado de gestionar las operaciones relacionadas con las solicitudes.
  * Proporciona métodos para crear nuevas solicitudes, revisar solicitudes existentes
@@ -119,6 +121,7 @@ public class SolicitudService {
         solicitud.setEstado(request.aprobado() ? Estado.RESUELTO : Estado.RECHAZADO);
         solicitud.setMsg(request.mensajeRespuesta());
         solicitud.setRevisor(revisor);
+        solicitud.setEndDate(LocalDateTime.now());
         notificationService.notificar(
                 solicitud.getAutor(),
                 "Su solicitud ha sido " + (request.aprobado() ? "APROBADA." : "RECHAZADA."),

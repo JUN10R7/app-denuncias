@@ -35,7 +35,7 @@ public record DenunciaResponse(
                 .estado(denuncia.getEstado().name())
                 .fecha(denuncia.getCreatedDate().toString())
                 .usuario(denuncia.getUsuario().getUsername())
-                .mod(denuncia.getModAsignado().getUsername() == null ? "Sin asignar" : denuncia.getModAsignado().getUsername())
+                .mod(denuncia.getModAsignado() == null ? "Sin asignar" : denuncia.getModAsignado().getUsername())
                 .build();
     }
     /**

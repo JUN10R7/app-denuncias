@@ -1,7 +1,6 @@
 package utp.edu.denuncias.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import utp.edu.denuncias.model.Denuncia;
 import utp.edu.denuncias.model.Notification;
 import utp.edu.denuncias.model.Solicitud;
 
@@ -30,13 +29,5 @@ public interface NotificationRepository extends JpaRepository<Notification, Long
      * @return Lista de notificaciones relacionadas con la solicitud proporcionada
      *         y que no han sido leídas.
      */
-    List<Notification> findBySolicitudAndReadFalse(Solicitud solicitud);
-
-    /**
-     * Recupera una lista de notificaciones asociadas a una denuncia específica y cuyo estado no indica que han sido leídas.
-     *
-     * @param denuncia La denuncia a la que están asociadas las notificaciones buscadas.
-     * @return Lista de notificaciones relacionadas con la denuncia especificada y que no han sido marcadas como leídas.
-     */
-    List<Notification> findByDenunciaAndReadFalse(Denuncia denuncia);
+    List<Notification> findBySolicitudAndVistoFalse(Solicitud solicitud);
 }

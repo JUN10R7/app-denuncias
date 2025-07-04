@@ -31,18 +31,10 @@ public interface DenunciaRepository extends JpaRepository<Denuncia, Long> {
     Optional<Denuncia> findByUsuarioIdAndId(Long userId, Long id);
 
     /**
-     * Elimina una denuncia de la base de datos según su identificador y estado específicos.
-     *
-     * @param id Identificador único de la denuncia que se desea eliminar
-     * @param estado Estado actual de la denuncia que debe coincidir para proceder con la eliminación
-     */
-    void deleteDenunciaByIdAndEstado(Long id, Estado estado);
-
-    /**
      * Busca y devuelve todas las denuncias que no tienen un moderador asignado y cuyo estado no coincide
      * con el estado proporcionado.
      *
-     * @param estado Estado que será excluido de la búsqueda
+     * @param estados Estado que será excluido de la búsqueda
      * @return Lista de denuncias que no tienen un moderador asignado y cuyo estado no es el especificado
      */
     List<Denuncia> findAllByModAsignadoIsNullAndEstadoNotIn(List<Estado> estados);

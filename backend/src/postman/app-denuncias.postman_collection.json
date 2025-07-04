@@ -1,0 +1,2945 @@
+{
+	"info": {
+		"_postman_id": "65cacae1-4a22-472f-81b3-5a2d79b02fe1",
+		"name": "app-denuncias",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "45340079"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombres\": \"Junior\",\r\n    \"apellidos\": \"Bautista\",\r\n    \"username\": \"bausami\",\r\n    \"password\": \"123\",\r\n    \"dni\": \"12345678\",\r\n    \"email\": \"junior@bs.com\",\r\n    \"rol\": \"ADMIN\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/registro",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"registro"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Usuario con rol ADMIN",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nombres\": \"Junior\",\r\n    \"apellidos\": \"Bautista\",\r\n    \"username\": \"bausami\",\r\n    \"password\": \"123\",\r\n    \"dni\": \"12345678\",\r\n    \"email\": \"junior@bs.com\",\r\n    \"rol\": \"ADMIN\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/registro",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"registro"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/plain;charset=UTF-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "32"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 28 Jun 2025 17:01:22 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "Usuario registrado correctamente"
+						},
+						{
+							"name": "Usuario con rol MOD",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nombres\": \"María\",\r\n    \"apellidos\": \"Fernández\",\r\n    \"username\": \"mfernandez\",\r\n    \"password\": \"123\",\r\n    \"dni\": \"34567890\",\r\n    \"email\": \"maria.fernandez@example.com\",\r\n    \"rol\": \"MOD\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/registro",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"registro"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/plain;charset=UTF-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "32"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 29 Jun 2025 17:16:48 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "Usuario registrado correctamente"
+						},
+						{
+							"name": "Usuario con rol USER",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nombres\": \"Carlos\",\r\n    \"apellidos\": \"Gómez\",\r\n    \"username\": \"cgomez\",\r\n    \"password\": \"123\",\r\n    \"dni\": \"45678901\",\r\n    \"email\": \"carlos.gomez@example.com\",\r\n    \"rol\": \"USER\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/registro",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"registro"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/plain;charset=UTF-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "32"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 29 Jun 2025 17:18:03 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "Usuario registrado correctamente"
+						}
+					]
+				},
+				{
+					"name": "Login",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"bausami\",\r\n    \"password\": \"1234\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/auth/login",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Logeo ADMIN",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": \"bausami\",\r\n    \"password\": \"123\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/auth/login",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"auth",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 28 Jun 2025 17:09:06 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"token\": \"eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJiYXVzYW1pIiwicm9sIjoiQURNSU4iLCJleHAiOjE3NTEyMTY5NDZ9.JEQDV6cVOdqHIm_PQCkO-chregm_j_TwcJPzPBz1hI05424TK80ufd62lywnVV6ByzrQiRJOTCjdfIZyzCkHlg\"\n}"
+						},
+						{
+							"name": "Logeo MOD",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": \"mfernandez\",\r\n    \"password\": \"123\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/auth/login",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"auth",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 29 Jun 2025 17:19:31 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"token\": \"eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJtZmVybmFuZGV6Iiwicm9sIjoiTU9EIiwiZXhwIjoxNzUxMzAzOTcxfQ.ee1s4Zg9kwmQU1HPDc6LL31PvIPkOAvWCIKMKADJggJDNnlKXLyI6NoMQi1mo57Z8SNWq9KV-GTViEI1QC6gaw\"\n}"
+						},
+						{
+							"name": "Logeo USER",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": \"cgomez\",\r\n    \"password\": \"123\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/auth/login",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"auth",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 29 Jun 2025 17:19:50 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"token\": \"eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJjZ29tZXoiLCJyb2wiOiJVU0VSIiwiZXhwIjoxNzUxMzAzOTkwfQ.Wpe2jQWQHBghkPHjZywRs9XouBUqfWgKokLvNNn23VpHgTUcoKgiSbnqINV6ebzgEZfYKhE-Pb2paPgY5RJKdg\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Usuarios",
+			"item": [
+				{
+					"name": "USER",
+					"item": [
+						{
+							"name": "Editar usuario",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJiYXVzYW1pIiwicm9sIjoiQURNSU4iLCJleHAiOjE3NTEyMTY5NDZ9.JEQDV6cVOdqHIm_PQCkO-chregm_j_TwcJPzPBz1hI05424TK80ufd62lywnVV6ByzrQiRJOTCjdfIZyzCkHlg",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": \"bausami\",\r\n    \"password\": \"123\",\r\n    \"email\": \"bautistasamillank10@gmail.com\",\r\n    \"rol\": \"ADMIN\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/usuario",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"usuario"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Edicion correcta",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"username\": \"bausami\",\r\n    \"password\": \"123\",\r\n    \"email\": \"bautistasamillank10@gmail.com\",\r\n    \"rol\": \"ADMIN\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "localhost:8080/usuario",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"usuario"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Content-Type-Options",
+											"value": "nosniff"
+										},
+										{
+											"key": "X-XSS-Protection",
+											"value": "0"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, no-store, max-age=0, must-revalidate"
+										},
+										{
+											"key": "Pragma",
+											"value": "no-cache"
+										},
+										{
+											"key": "Expires",
+											"value": "0"
+										},
+										{
+											"key": "X-Frame-Options",
+											"value": "DENY"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Sat, 28 Jun 2025 19:49:31 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"Se ha actualizado correctamente el usuario.\",\n    \"nombres\": \"Junior\",\n    \"apellidos\": \"Bautista\",\n    \"username\": \"bausami\",\n    \"email\": \"bautistasamillank10@gmail.com\",\n    \"dni\": \"12345678\",\n    \"rol\": \"ADMIN\"\n}"
+								}
+							]
+						},
+						{
+							"name": "Listar usuario",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJiYXVzYW1pIiwicm9sIjoiQURNSU4iLCJleHAiOjE3NTEyMTY5NDZ9.JEQDV6cVOdqHIm_PQCkO-chregm_j_TwcJPzPBz1hI05424TK80ufd62lywnVV6ByzrQiRJOTCjdfIZyzCkHlg",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/usuario",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"usuario"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Listado correcto",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "localhost:8080/usuario",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"usuario"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Content-Type-Options",
+											"value": "nosniff"
+										},
+										{
+											"key": "X-XSS-Protection",
+											"value": "0"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, no-store, max-age=0, must-revalidate"
+										},
+										{
+											"key": "Pragma",
+											"value": "no-cache"
+										},
+										{
+											"key": "Expires",
+											"value": "0"
+										},
+										{
+											"key": "X-Frame-Options",
+											"value": "DENY"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Sun, 29 Jun 2025 04:09:43 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"nombres\": \"Junior\",\n    \"apellidos\": \"Bautista\",\n    \"username\": \"bausami\",\n    \"email\": \"bautistasamillank10@gmail.com\",\n    \"dni\": \"12345678\",\n    \"rol\": \"ADMIN\"\n}"
+								}
+							]
+						},
+						{
+							"name": "Desactivar usuario",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/usuario",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"usuario"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "MOD",
+					"item": [
+						{
+							"name": "Listar usuarios",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJiYXVzYW1pIiwicm9sIjoiQURNSU4iLCJleHAiOjE3NTEyMTY5NDZ9.JEQDV6cVOdqHIm_PQCkO-chregm_j_TwcJPzPBz1hI05424TK80ufd62lywnVV6ByzrQiRJOTCjdfIZyzCkHlg",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/mod/usuario",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"mod",
+										"usuario"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Listado correcto",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "localhost:8080/mod/usuario",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"mod",
+												"usuario"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Content-Type-Options",
+											"value": "nosniff"
+										},
+										{
+											"key": "X-XSS-Protection",
+											"value": "0"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, no-store, max-age=0, must-revalidate"
+										},
+										{
+											"key": "Pragma",
+											"value": "no-cache"
+										},
+										{
+											"key": "Expires",
+											"value": "0"
+										},
+										{
+											"key": "X-Frame-Options",
+											"value": "DENY"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Sun, 29 Jun 2025 04:02:41 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "[\n    {\n        \"nombres\": \"Junior\",\n        \"apellidos\": \"Bautista\",\n        \"username\": \"bausami\",\n        \"email\": \"bautistasamillank10@gmail.com\",\n        \"dni\": \"12345678\",\n        \"rol\": \"ADMIN\"\n    }\n]"
+								}
+							]
+						},
+						{
+							"name": "Listar usuario",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJiYXVzYW1pIiwicm9sIjoiQURNSU4iLCJleHAiOjE3NTEyMTY5NDZ9.JEQDV6cVOdqHIm_PQCkO-chregm_j_TwcJPzPBz1hI05424TK80ufd62lywnVV6ByzrQiRJOTCjdfIZyzCkHlg",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/mod/usuario/2",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"mod",
+										"usuario",
+										"2"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Listado correcto",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "localhost:8080/mod/usuario/2",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"mod",
+												"usuario",
+												"2"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Content-Type-Options",
+											"value": "nosniff"
+										},
+										{
+											"key": "X-XSS-Protection",
+											"value": "0"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, no-store, max-age=0, must-revalidate"
+										},
+										{
+											"key": "Pragma",
+											"value": "no-cache"
+										},
+										{
+											"key": "Expires",
+											"value": "0"
+										},
+										{
+											"key": "X-Frame-Options",
+											"value": "DENY"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Sun, 29 Jun 2025 04:08:44 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"nombres\": \"Junior\",\n    \"apellidos\": \"Bautista\",\n    \"username\": \"bausami\",\n    \"email\": \"bautistasamillank10@gmail.com\",\n    \"dni\": \"12345678\",\n    \"rol\": \"ADMIN\"\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "ADMIN",
+					"item": [
+						{
+							"name": "Desactivar usuario",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/admin/usuario/52",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"admin",
+										"usuario",
+										"52"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Activar usuario",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/admin/usuario/",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"admin",
+										"usuario",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Listar usuarios",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJiYXVzYW1pIiwicm9sIjoiQURNSU4iLCJleHAiOjE3NTEyMTY5NDZ9.JEQDV6cVOdqHIm_PQCkO-chregm_j_TwcJPzPBz1hI05424TK80ufd62lywnVV6ByzrQiRJOTCjdfIZyzCkHlg",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/admin/usuario",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"admin",
+										"usuario"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Listado correcto",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "localhost:8080/admin/usuario",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"admin",
+												"usuario"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Content-Type-Options",
+											"value": "nosniff"
+										},
+										{
+											"key": "X-XSS-Protection",
+											"value": "0"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, no-store, max-age=0, must-revalidate"
+										},
+										{
+											"key": "Pragma",
+											"value": "no-cache"
+										},
+										{
+											"key": "Expires",
+											"value": "0"
+										},
+										{
+											"key": "X-Frame-Options",
+											"value": "DENY"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Sun, 29 Jun 2025 17:00:35 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "[\n    {\n        \"nombres\": \"Junior\",\n        \"apellidos\": \"Bautista\",\n        \"username\": \"bausami\",\n        \"email\": \"bautistasamillank10@gmail.com\",\n        \"dni\": \"12345678\",\n        \"rol\": \"ADMIN\",\n        \"enabled\": false\n    }\n]"
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Denuncias",
+			"item": [
+				{
+					"name": "USER",
+					"item": [
+						{
+							"name": "Crear denuncia",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJjZ29tZXoiLCJleHAiOjE3NTE3NDAzNTV9.YYj1QD4e7j8NNzSaoWF2VZOfcpH4RsFSsyavU7Bf-wKd3AKKRMEQ7515ohQJz51yfR0aK2zmkJ24IKzqiipNkg",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"titulo\": \"Me están extorsionando.\",\r\n    \"description\": \"Me llegaron mensajes por WhatsApp de personas pidiendome dinero.\",\r\n    \"lugar\": \"Chiclayo\",\r\n    \"categoria\": \"EXTORTION\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/usuario/denuncia",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"usuario",
+										"denuncia"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Test con respuesta",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"titulo\": \"Mi vecino lleva de fiesta 2 días.\",\r\n    \"description\": \"He pedido de forma amable que piense en las personas que trabajamos de forma virtual y baje a lo que escucha, pero no hay cambios. Por favor, arrestenlo.\",\r\n    \"lugar\": \"Trujillo\",\r\n    \"categoria\": \"RUIDOS_MOLESTOS\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "localhost:8080/usuario/denuncia",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"usuario",
+												"denuncia"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Content-Type-Options",
+											"value": "nosniff"
+										},
+										{
+											"key": "X-XSS-Protection",
+											"value": "0"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, no-store, max-age=0, must-revalidate"
+										},
+										{
+											"key": "Pragma",
+											"value": "no-cache"
+										},
+										{
+											"key": "Expires",
+											"value": "0"
+										},
+										{
+											"key": "X-Frame-Options",
+											"value": "DENY"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Fri, 04 Jul 2025 18:44:58 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"titulo\": \"Mi vecino lleva de fiesta 2 días.\",\n    \"description\": \"He pedido de forma amable que piense en las personas que trabajamos de forma virtual y baje a lo que escucha, pero no hay cambios. Por favor, arrestenlo.\",\n    \"lugar\": \"Trujillo\",\n    \"categoria\": \"RUIDOS_MOLESTOS\",\n    \"estado\": \"PENDIENTE\",\n    \"fecha\": \"2025-07-04T13:44:56.572534100\",\n    \"usuario\": \"cgomez\",\n    \"mod\": \"Sin asignar\"\n}"
+								}
+							]
+						},
+						{
+							"name": "Editar denuncia",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJjZ29tZXoiLCJleHAiOjE3NTE3NDAzNTV9.YYj1QD4e7j8NNzSaoWF2VZOfcpH4RsFSsyavU7Bf-wKd3AKKRMEQ7515ohQJz51yfR0aK2zmkJ24IKzqiipNkg",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"titulo\": \"Mi vecino lleva de fiesta 4 días.\",\r\n    \"description\": \"He pedido de forma amable que piense en las personas que trabajamos de forma virtual y baje a lo que escucha, pero no hay cambios. Por favor, arrestenlo.\",\r\n    \"lugar\": \"Lima\",\r\n    \"categoria\": \"RUIDOS_MOLESTOS\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/usuario/denuncia/2",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"usuario",
+										"denuncia",
+										"2"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Respuesta",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"titulo\": \"Mi vecino lleva de fiesta 4 días.\",\r\n    \"description\": \"He pedido de forma amable que piense en las personas que trabajamos de forma virtual y baje a lo que escucha, pero no hay cambios. Por favor, arrestenlo.\",\r\n    \"lugar\": \"Lima\",\r\n    \"categoria\": \"RUIDOS_MOLESTOS\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "localhost:8080/usuario/denuncia/2",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"usuario",
+												"denuncia",
+												"2"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Content-Type-Options",
+											"value": "nosniff"
+										},
+										{
+											"key": "X-XSS-Protection",
+											"value": "0"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, no-store, max-age=0, must-revalidate"
+										},
+										{
+											"key": "Pragma",
+											"value": "no-cache"
+										},
+										{
+											"key": "Expires",
+											"value": "0"
+										},
+										{
+											"key": "X-Frame-Options",
+											"value": "DENY"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Fri, 04 Jul 2025 18:58:25 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"titulo\": \"Mi vecino lleva de fiesta 4 días.\",\n    \"description\": \"He pedido de forma amable que piense en las personas que trabajamos de forma virtual y baje a lo que escucha, pero no hay cambios. Por favor, arrestenlo.\",\n    \"lugar\": \"Lima\",\n    \"categoria\": \"RUIDOS_MOLESTOS\",\n    \"estado\": \"PENDIENTE\",\n    \"fecha\": \"2025-07-04T13:44:56\",\n    \"usuario\": \"cgomez\",\n    \"mod\": \"Sin asignar\"\n}"
+								}
+							]
+						},
+						{
+							"name": "Listar denuncias",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJjZ29tZXoiLCJleHAiOjE3NTE3NDAzNTV9.YYj1QD4e7j8NNzSaoWF2VZOfcpH4RsFSsyavU7Bf-wKd3AKKRMEQ7515ohQJz51yfR0aK2zmkJ24IKzqiipNkg",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/usuario/denuncia",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"usuario",
+										"denuncia"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Ok",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "localhost:8080/usuario/denuncia",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"usuario",
+												"denuncia"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Content-Type-Options",
+											"value": "nosniff"
+										},
+										{
+											"key": "X-XSS-Protection",
+											"value": "0"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, no-store, max-age=0, must-revalidate"
+										},
+										{
+											"key": "Pragma",
+											"value": "no-cache"
+										},
+										{
+											"key": "Expires",
+											"value": "0"
+										},
+										{
+											"key": "X-Frame-Options",
+											"value": "DENY"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Fri, 04 Jul 2025 20:00:51 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "[\n    {\n        \"titulo\": \"Me están extorsionando.\",\n        \"description\": \"Me llegaron mensajes por WhatsApp de personas pidiendome dinero.\",\n        \"lugar\": \"Chiclayo\",\n        \"categoria\": \"EXTORTION\",\n        \"estado\": \"PENDIENTE\",\n        \"fecha\": \"2025-07-04T13:37:47\",\n        \"usuario\": \"cgomez\",\n        \"mod\": \"Sin asignar\"\n    },\n    {\n        \"titulo\": \"Mi vecino lleva de fiesta 4 días.\",\n        \"description\": \"He pedido de forma amable que piense en las personas que trabajamos de forma virtual y baje a lo que escucha, pero no hay cambios. Por favor, arrestenlo.\",\n        \"lugar\": \"Lima\",\n        \"categoria\": \"RUIDOS_MOLESTOS\",\n        \"estado\": \"EN_REVISION\",\n        \"fecha\": \"2025-07-04T13:44:56\",\n        \"usuario\": \"cgomez\",\n        \"mod\": \"mfernandez\"\n    }\n]"
+								}
+							]
+						},
+						{
+							"name": "Listar denuncia",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJjZ29tZXoiLCJleHAiOjE3NTE3NDAzNTV9.YYj1QD4e7j8NNzSaoWF2VZOfcpH4RsFSsyavU7Bf-wKd3AKKRMEQ7515ohQJz51yfR0aK2zmkJ24IKzqiipNkg",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/usuario/denuncia/1",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"usuario",
+										"denuncia",
+										"1"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Ok",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "localhost:8080/usuario/denuncia/1",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"usuario",
+												"denuncia",
+												"1"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Content-Type-Options",
+											"value": "nosniff"
+										},
+										{
+											"key": "X-XSS-Protection",
+											"value": "0"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, no-store, max-age=0, must-revalidate"
+										},
+										{
+											"key": "Pragma",
+											"value": "no-cache"
+										},
+										{
+											"key": "Expires",
+											"value": "0"
+										},
+										{
+											"key": "X-Frame-Options",
+											"value": "DENY"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Fri, 04 Jul 2025 20:01:54 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"titulo\": \"Me están extorsionando.\",\n    \"description\": \"Me llegaron mensajes por WhatsApp de personas pidiendome dinero.\",\n    \"lugar\": \"Chiclayo\",\n    \"categoria\": \"EXTORTION\",\n    \"estado\": \"PENDIENTE\",\n    \"fecha\": \"2025-07-04T13:37:47\",\n    \"usuario\": \"cgomez\",\n    \"mod\": \"Sin asignar\"\n}"
+								}
+							]
+						},
+						{
+							"name": "Eliminar denuncia",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJjZ29tZXoiLCJleHAiOjE3NTE3NDAzNTV9.YYj1QD4e7j8NNzSaoWF2VZOfcpH4RsFSsyavU7Bf-wKd3AKKRMEQ7515ohQJz51yfR0aK2zmkJ24IKzqiipNkg",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/usuario/denuncia/1",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"usuario",
+										"denuncia",
+										"1"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "estado no PENDIENTE",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "localhost:8080/usuario/denuncia/2",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"usuario",
+												"denuncia",
+												"2"
+											]
+										}
+									},
+									"status": "Internal Server Error",
+									"code": 500,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Content-Type-Options",
+											"value": "nosniff"
+										},
+										{
+											"key": "X-XSS-Protection",
+											"value": "0"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, no-store, max-age=0, must-revalidate"
+										},
+										{
+											"key": "Pragma",
+											"value": "no-cache"
+										},
+										{
+											"key": "Expires",
+											"value": "0"
+										},
+										{
+											"key": "X-Frame-Options",
+											"value": "DENY"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Fri, 04 Jul 2025 20:06:28 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "close"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"Error inesperado\",\n    \"error\": \"Solo se pueden eliminar denuncias con estado PENDIENTE\",\n    \"status\": 500,\n    \"timestamp\": \"2025-07-04T15:06:28.9114749\"\n}"
+								},
+								{
+									"name": "Ok",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "localhost:8080/usuario/denuncia/1",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"usuario",
+												"denuncia",
+												"1"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "plain",
+									"header": [
+										{
+											"key": "X-Content-Type-Options",
+											"value": "nosniff"
+										},
+										{
+											"key": "X-XSS-Protection",
+											"value": "0"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, no-store, max-age=0, must-revalidate"
+										},
+										{
+											"key": "Pragma",
+											"value": "no-cache"
+										},
+										{
+											"key": "Expires",
+											"value": "0"
+										},
+										{
+											"key": "X-Frame-Options",
+											"value": "DENY"
+										},
+										{
+											"key": "Content-Length",
+											"value": "0"
+										},
+										{
+											"key": "Date",
+											"value": "Fri, 04 Jul 2025 20:18:03 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": null
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "MOD",
+					"item": [
+						{
+							"name": "Listar todas las denuncias sin asignar",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJtZmVybmFuZGV6IiwiZXhwIjoxNzUxNzQwMzM4fQ.8o6EJh_G0x3MIXNpLqoz8vjr-Fqkmjaw9pX6hP8i5IIIVhTvDtWMWxzflm0QifcrwUzNwvnVH-tTZptkBKyEcg",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/mod/denuncia/true",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"mod",
+										"denuncia",
+										"true"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Ok",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "localhost:8080/mod/denuncia/true",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"mod",
+												"denuncia",
+												"true"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Content-Type-Options",
+											"value": "nosniff"
+										},
+										{
+											"key": "X-XSS-Protection",
+											"value": "0"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, no-store, max-age=0, must-revalidate"
+										},
+										{
+											"key": "Pragma",
+											"value": "no-cache"
+										},
+										{
+											"key": "Expires",
+											"value": "0"
+										},
+										{
+											"key": "X-Frame-Options",
+											"value": "DENY"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Fri, 04 Jul 2025 19:44:03 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "[\n    {\n        \"titulo\": \"Me están extorsionando.\",\n        \"description\": \"Me llegaron mensajes por WhatsApp de personas pidiendome dinero.\",\n        \"lugar\": \"Chiclayo\",\n        \"categoria\": \"EXTORTION\",\n        \"estado\": \"PENDIENTE\",\n        \"fecha\": \"2025-07-04T13:37:47\",\n        \"usuario\": \"cgomez\",\n        \"mod\": \"Sin asignar\"\n    },\n    {\n        \"titulo\": \"Mi vecino lleva de fiesta 4 días.\",\n        \"description\": \"He pedido de forma amable que piense en las personas que trabajamos de forma virtual y baje a lo que escucha, pero no hay cambios. Por favor, arrestenlo.\",\n        \"lugar\": \"Lima\",\n        \"categoria\": \"RUIDOS_MOLESTOS\",\n        \"estado\": \"PENDIENTE\",\n        \"fecha\": \"2025-07-04T13:44:56\",\n        \"usuario\": \"cgomez\",\n        \"mod\": \"Sin asignar\"\n    }\n]"
+								}
+							]
+						},
+						{
+							"name": "Listar mis denuncias asignadas",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJtZmVybmFuZGV6IiwiZXhwIjoxNzUxNzQwMzM4fQ.8o6EJh_G0x3MIXNpLqoz8vjr-Fqkmjaw9pX6hP8i5IIIVhTvDtWMWxzflm0QifcrwUzNwvnVH-tTZptkBKyEcg",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/mod/denuncia/false",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"mod",
+										"denuncia",
+										"false"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "ADMIN",
+					"item": [
+						{
+							"name": "Listar todas las denuncias",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJiYXVzYW1pIiwiZXhwIjoxNzUxNzM5MzM3fQ._ir8VDYSejr5kWXScqXgbAhr7CDJAYGi1rDa_lDBeaCGhDhxSUduR5A9lTT7U6IwaX8m9DBUDjK8BJFsycSPBw",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/admin/denuncia",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"admin",
+										"denuncia"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Listar denuncias usuario",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJiYXVzYW1pIiwiZXhwIjoxNzUxNzM5MzM3fQ._ir8VDYSejr5kWXScqXgbAhr7CDJAYGi1rDa_lDBeaCGhDhxSUduR5A9lTT7U6IwaX8m9DBUDjK8BJFsycSPBw",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/admin/denuncia/usuario/56",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"admin",
+										"denuncia",
+										"usuario",
+										"56"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Listar denuncias asignadas a mod",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJiYXVzYW1pIiwiZXhwIjoxNzUxNzM5MzM3fQ._ir8VDYSejr5kWXScqXgbAhr7CDJAYGi1rDa_lDBeaCGhDhxSUduR5A9lTT7U6IwaX8m9DBUDjK8BJFsycSPBw",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/admin/denuncia/mod/56",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"admin",
+										"denuncia",
+										"mod",
+										"56"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Asignar mod",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJiYXVzYW1pIiwiZXhwIjoxNzUxNzM5MzM3fQ._ir8VDYSejr5kWXScqXgbAhr7CDJAYGi1rDa_lDBeaCGhDhxSUduR5A9lTT7U6IwaX8m9DBUDjK8BJFsycSPBw",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/admin/denuncia/asignarMod/2/55",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"admin",
+										"denuncia",
+										"asignarMod",
+										"2",
+										"55"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Ok",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [],
+										"url": {
+											"raw": "localhost:8080/admin/denuncia/asignarMod/2/55",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"admin",
+												"denuncia",
+												"asignarMod",
+												"2",
+												"55"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Content-Type-Options",
+											"value": "nosniff"
+										},
+										{
+											"key": "X-XSS-Protection",
+											"value": "0"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, no-store, max-age=0, must-revalidate"
+										},
+										{
+											"key": "Pragma",
+											"value": "no-cache"
+										},
+										{
+											"key": "Expires",
+											"value": "0"
+										},
+										{
+											"key": "X-Frame-Options",
+											"value": "DENY"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Fri, 04 Jul 2025 19:54:20 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"titulo\": \"Mi vecino lleva de fiesta 4 días.\",\n    \"description\": \"He pedido de forma amable que piense en las personas que trabajamos de forma virtual y baje a lo que escucha, pero no hay cambios. Por favor, arrestenlo.\",\n    \"lugar\": \"Lima\",\n    \"categoria\": \"RUIDOS_MOLESTOS\",\n    \"estado\": \"PENDIENTE\",\n    \"fecha\": \"2025-07-04T13:44:56\",\n    \"usuario\": \"cgomez\",\n    \"mod\": \"mfernandez\"\n}"
+								}
+							]
+						},
+						{
+							"name": "Cambiar estado denuncia",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJiYXVzYW1pIiwiZXhwIjoxNzUxNzM5MzM3fQ._ir8VDYSejr5kWXScqXgbAhr7CDJAYGi1rDa_lDBeaCGhDhxSUduR5A9lTT7U6IwaX8m9DBUDjK8BJFsycSPBw",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": 2,\r\n    \"estado\": \"EN_REVISION\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/admin/denuncia/cambiarEstado",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"admin",
+										"denuncia",
+										"cambiarEstado"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Ok",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"id\": 2,\r\n    \"estado\": \"EN_REVISION\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "localhost:8080/admin/denuncia/cambiarEstado",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"admin",
+												"denuncia",
+												"cambiarEstado"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Content-Type-Options",
+											"value": "nosniff"
+										},
+										{
+											"key": "X-XSS-Protection",
+											"value": "0"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, no-store, max-age=0, must-revalidate"
+										},
+										{
+											"key": "Pragma",
+											"value": "no-cache"
+										},
+										{
+											"key": "Expires",
+											"value": "0"
+										},
+										{
+											"key": "X-Frame-Options",
+											"value": "DENY"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Fri, 04 Jul 2025 19:58:16 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"titulo\": \"Mi vecino lleva de fiesta 4 días.\",\n    \"description\": \"He pedido de forma amable que piense en las personas que trabajamos de forma virtual y baje a lo que escucha, pero no hay cambios. Por favor, arrestenlo.\",\n    \"lugar\": \"Lima\",\n    \"categoria\": \"RUIDOS_MOLESTOS\",\n    \"estado\": \"EN_REVISION\",\n    \"fecha\": \"2025-07-04T13:44:56\",\n    \"usuario\": \"cgomez\",\n    \"mod\": \"mfernandez\"\n}"
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Tools",
+			"item": [
+				{
+					"name": "Solicitud",
+					"item": [
+						{
+							"name": "Hacer solicitud",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJtZmVybmFuZGV6IiwiZXhwIjoxNzUxNzQwMzM4fQ.8o6EJh_G0x3MIXNpLqoz8vjr-Fqkmjaw9pX6hP8i5IIIVhTvDtWMWxzflm0QifcrwUzNwvnVH-tTZptkBKyEcg",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"titulo\": \"Quiero asignar esta denuncia.\",\r\n    \"msg\": \"Me siento interesado por el caso que se presenta, me gustaria ser el que gestione el recorrido de esta denuncia.\",\r\n    \"idDenuncia\": 2,\r\n    \"tipoSolicitud\": \"ASIGNAR_MODERADOR\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/mod/solicitud",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"mod",
+										"solicitud"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Revisar solicitud",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJiYXVzYW1pIiwiZXhwIjoxNzUxNzM5MzM3fQ._ir8VDYSejr5kWXScqXgbAhr7CDJAYGi1rDa_lDBeaCGhDhxSUduR5A9lTT7U6IwaX8m9DBUDjK8BJFsycSPBw",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": 1,\r\n    \"aprobado\": true,\r\n    \"mensajeRespuesta\": \"Te doy plazo de un mes para culminar con tu tarea.\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/mod/solicitud",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"mod",
+										"solicitud"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "APROBADA",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"id\": 1,\r\n    \"aprobado\": true,\r\n    \"mensajeRespuesta\": \"Te doy plazo de un mes para culminar con tu tarea.\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "localhost:8080/mod/solicitud",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"mod",
+												"solicitud"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Content-Type-Options",
+											"value": "nosniff"
+										},
+										{
+											"key": "X-XSS-Protection",
+											"value": "0"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, no-store, max-age=0, must-revalidate"
+										},
+										{
+											"key": "Pragma",
+											"value": "no-cache"
+										},
+										{
+											"key": "Expires",
+											"value": "0"
+										},
+										{
+											"key": "X-Frame-Options",
+											"value": "DENY"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Fri, 04 Jul 2025 19:27:48 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"id\": 1,\n    \"titulo\": \"Quiero asignar esta denuncia.\",\n    \"mensaje\": \"Te doy plazo de un mes para culminar con tu tarea.\",\n    \"respuesta\": null,\n    \"estado\": \"RESUELTO\",\n    \"tipo\": \"ASIGNAR_MODERADOR\",\n    \"createdDate\": \"2025-07-04T14:14:44\",\n    \"endDate\": \"2025-07-04T14:27:47.840426\",\n    \"autor\": \"mfernandez\",\n    \"revisor\": \"bausami\"\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Enums",
+					"item": [
+						{
+							"name": "Listar roles",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/enum/roles",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"enum",
+										"roles"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Roles",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "localhost:8080/enum/roles",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"enum",
+												"roles"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Content-Type-Options",
+											"value": "nosniff"
+										},
+										{
+											"key": "X-XSS-Protection",
+											"value": "0"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, no-store, max-age=0, must-revalidate"
+										},
+										{
+											"key": "Pragma",
+											"value": "no-cache"
+										},
+										{
+											"key": "Expires",
+											"value": "0"
+										},
+										{
+											"key": "X-Frame-Options",
+											"value": "DENY"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Fri, 04 Jul 2025 20:25:38 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "[\n    {\n        \"id\": \"ADMIN\",\n        \"titulo\": \"Administrador\",\n        \"descripcion\": \"Acceso completo al sistema.\"\n    },\n    {\n        \"id\": \"MOD\",\n        \"titulo\": \"Moderador\",\n        \"descripcion\": \"Puede revisar y gestionar denuncias.\"\n    },\n    {\n        \"id\": \"USER\",\n        \"titulo\": \"Usuario\",\n        \"descripcion\": \"Puede registrar denuncias y realizar seguimientos.\"\n    }\n]"
+								}
+							]
+						},
+						{
+							"name": "Listar categorias",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/enum/categorias",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"enum",
+										"categorias"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Categorias",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "localhost:8080/enum/categorias",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"enum",
+												"categorias"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Content-Type-Options",
+											"value": "nosniff"
+										},
+										{
+											"key": "X-XSS-Protection",
+											"value": "0"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, no-store, max-age=0, must-revalidate"
+										},
+										{
+											"key": "Pragma",
+											"value": "no-cache"
+										},
+										{
+											"key": "Expires",
+											"value": "0"
+										},
+										{
+											"key": "X-Frame-Options",
+											"value": "DENY"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Fri, 04 Jul 2025 20:26:13 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "[\n    {\n        \"id\": \"VIOLENCIA\",\n        \"titulo\": \"Violencia\",\n        \"descripcion\": \"Agresiones físicas, psicológicas u otras formas de violencia.\"\n    },\n    {\n        \"id\": \"ROBO\",\n        \"titulo\": \"Robo\",\n        \"descripcion\": \"Sustracción de bienes o pertenencias.\"\n    },\n    {\n        \"id\": \"CORRUPTION\",\n        \"titulo\": \"Corrupción\",\n        \"descripcion\": \"Mal uso del poder o recursos públicos para beneficio personal.\"\n    },\n    {\n        \"id\": \"DROGAS\",\n        \"titulo\": \"Drogas\",\n        \"descripcion\": \"Tráfico, consumo o distribución ilegal de sustancias.\"\n    },\n    {\n        \"id\": \"ACOSO\",\n        \"titulo\": \"Acoso\",\n        \"descripcion\": \"Persecución, intimidación o acoso en cualquier forma.\"\n    },\n    {\n        \"id\": \"CONTAMINATION\",\n        \"titulo\": \"Contaminación\",\n        \"descripcion\": \"Dañar el medio ambiente con residuos o actividades nocivas.\"\n    },\n    {\n        \"id\": \"VANDALISMO\",\n        \"titulo\": \"Vandalismo\",\n        \"descripcion\": \"Destrucción o daño deliberado a propiedad.\"\n    },\n    {\n        \"id\": \"NEGLIGENCIA\",\n        \"titulo\": \"Negligencia\",\n        \"descripcion\": \"Falta de acción o descuido de autoridades o entidades.\"\n    },\n    {\n        \"id\": \"DISCRIMINATION\",\n        \"titulo\": \"Discriminación\",\n        \"descripcion\": \"Trato injusto por razones de raza, género, religión, etc.\"\n    },\n    {\n        \"id\": \"ESTAFAS\",\n        \"titulo\": \"Estafas\",\n        \"descripcion\": \"Engaños con fines económicos o personales.\"\n    },\n    {\n        \"id\": \"RUIDOS_MOLESTOS\",\n        \"titulo\": \"Ruidos molestos\",\n        \"descripcion\": \"Sonidos intensos o molestos que perturban la tranquilidad.\"\n    },\n    {\n        \"id\": \"TRATA_DE_PERSONAS\",\n        \"titulo\": \"Trata de personas\",\n        \"descripcion\": \"Explotación o tráfico de seres humanos.\"\n    },\n    {\n        \"id\": \"EXTORTION\",\n        \"titulo\": \"Extorsión\",\n        \"descripcion\": \"Obtención ilegal de bienes o servicios mediante violencia o amenaza.\"\n    }\n]"
+								}
+							]
+						},
+						{
+							"name": "Listar estados",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/enum/estados",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"enum",
+										"estados"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Estados",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "localhost:8080/enum/estados",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"enum",
+												"estados"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Content-Type-Options",
+											"value": "nosniff"
+										},
+										{
+											"key": "X-XSS-Protection",
+											"value": "0"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, no-store, max-age=0, must-revalidate"
+										},
+										{
+											"key": "Pragma",
+											"value": "no-cache"
+										},
+										{
+											"key": "Expires",
+											"value": "0"
+										},
+										{
+											"key": "X-Frame-Options",
+											"value": "DENY"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Fri, 04 Jul 2025 20:26:48 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "[\n    {\n        \"id\": \"PENDIENTE\",\n        \"titulo\": \"Pendiente\",\n        \"descripcion\": \"La denuncia aún no ha sido atendida.\"\n    },\n    {\n        \"id\": \"EN_PROCESO\",\n        \"titulo\": \"En proceso\",\n        \"descripcion\": \"La denuncia está siendo gestionada.\"\n    },\n    {\n        \"id\": \"EN_REVISION\",\n        \"titulo\": \"En revisión\",\n        \"descripcion\": \"La denuncia está siendo evaluada en detalle.\"\n    },\n    {\n        \"id\": \"RESUELTO\",\n        \"titulo\": \"Resuelto\",\n        \"descripcion\": \"La denuncia ha sido solucionada satisfactoriamente.\"\n    },\n    {\n        \"id\": \"RECHAZADO\",\n        \"titulo\": \"Rechazado\",\n        \"descripcion\": \"La denuncia no será atendida o no cumple criterios.\"\n    },\n    {\n        \"id\": \"ELIMINADO\",\n        \"titulo\": \"Eliminado\",\n        \"descripcion\": \"La denuncia se almacenará en la base de datos pero será accesible para seleccionados.\"\n    }\n]"
+								}
+							]
+						},
+						{
+							"name": "Listar tipos de solicitud",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/enum/tiposSolicitud",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"enum",
+										"tiposSolicitud"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Tipos de solicitud",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "localhost:8080/enum/tiposSolicitud",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"enum",
+												"tiposSolicitud"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Content-Type-Options",
+											"value": "nosniff"
+										},
+										{
+											"key": "X-XSS-Protection",
+											"value": "0"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, no-store, max-age=0, must-revalidate"
+										},
+										{
+											"key": "Pragma",
+											"value": "no-cache"
+										},
+										{
+											"key": "Expires",
+											"value": "0"
+										},
+										{
+											"key": "X-Frame-Options",
+											"value": "DENY"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Fri, 04 Jul 2025 20:27:26 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "[\n    {\n        \"name\": \"ASIGNAR_MODERADOR\",\n        \"titulo\": \"Solicitud de asignación de moderador\",\n        \"description\": \"Se solicita que se asigne un moderador responsable para esta denuncia.\"\n    },\n    {\n        \"name\": \"CAMBIO_ESTADO\",\n        \"titulo\": \"Solicitud de cambio de estado\",\n        \"description\": \"Se solicita actualizar el estado actual de esta denuncia.\"\n    },\n    {\n        \"name\": \"ELIMINAR_DENUNCIA\",\n        \"titulo\": \"Solicitud de eliminación de denuncia\",\n        \"description\": \"Se solicita eliminar esta denuncia del sistema de forma permanente.\"\n    },\n    {\n        \"name\": \"ARCHIVAR_DENUNCIA\",\n        \"titulo\": \"Solicitud de archivo de denuncia\",\n        \"description\": \"Se solicita archivar esta denuncia como cerrada o resuelta.\"\n    },\n    {\n        \"name\": \"REABRIR_DENUNCIA\",\n        \"titulo\": \"Solicitud de reapertura de denuncia\",\n        \"description\": \"Se solicita reabrir una denuncia previamente archivada o cerrada.\"\n    },\n    {\n        \"name\": \"INTERN_COMMUNICATION\",\n        \"titulo\": \"Mensaje interno del equipo\",\n        \"description\": \"Este mensaje contiene una observación o instrucción interna entre moderadores y administradores.\"\n    }\n]"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Notificaciones",
+					"item": [
+						{
+							"name": "Listar notificaciones",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJjZ29tZXoiLCJleHAiOjE3NTE3NDAzNTV9.YYj1QD4e7j8NNzSaoWF2VZOfcpH4RsFSsyavU7Bf-wKd3AKKRMEQ7515ohQJz51yfR0aK2zmkJ24IKzqiipNkg",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/usuario/notificaciones",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"usuario",
+										"notificaciones"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Ok",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "localhost:8080/usuario/notificaciones",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"usuario",
+												"notificaciones"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Content-Type-Options",
+											"value": "nosniff"
+										},
+										{
+											"key": "X-XSS-Protection",
+											"value": "0"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, no-store, max-age=0, must-revalidate"
+										},
+										{
+											"key": "Pragma",
+											"value": "no-cache"
+										},
+										{
+											"key": "Expires",
+											"value": "0"
+										},
+										{
+											"key": "X-Frame-Options",
+											"value": "DENY"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Fri, 04 Jul 2025 20:35:33 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "[\n    {\n        \"id\": 102,\n        \"titulo\": \"Se ha actualizado el estado de su denuncia.\",\n        \"message\": \"El estado de su denuncia \",\n        \"read\": false,\n        \"fecha\": \"2025-07-04T14:58:16\",\n        \"denunciaTitulo\": \"Mi vecino lleva de fiesta 4 días.\",\n        \"solicitudTitulo\": null\n    }\n]"
+								}
+							]
+						},
+						{
+							"name": "Marcar como visto",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJjZ29tZXoiLCJleHAiOjE3NTE3NDAzNTV9.YYj1QD4e7j8NNzSaoWF2VZOfcpH4RsFSsyavU7Bf-wKd3AKKRMEQ7515ohQJz51yfR0aK2zmkJ24IKzqiipNkg",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/usuario/notificaciones/102",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"usuario",
+										"notificaciones",
+										"102"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Ok",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [],
+										"url": {
+											"raw": "localhost:8080/usuario/notificaciones/102",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"usuario",
+												"notificaciones",
+												"102"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "plain",
+									"header": [
+										{
+											"key": "X-Content-Type-Options",
+											"value": "nosniff"
+										},
+										{
+											"key": "X-XSS-Protection",
+											"value": "0"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, no-store, max-age=0, must-revalidate"
+										},
+										{
+											"key": "Pragma",
+											"value": "no-cache"
+										},
+										{
+											"key": "Expires",
+											"value": "0"
+										},
+										{
+											"key": "X-Frame-Options",
+											"value": "DENY"
+										},
+										{
+											"key": "Content-Length",
+											"value": "0"
+										},
+										{
+											"key": "Date",
+											"value": "Fri, 04 Jul 2025 20:38:02 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": null
+								}
+							]
+						}
+					]
+				}
+			]
+		}
+	]
+}

@@ -33,7 +33,7 @@ public record NotificationResponse(
                 .id(notification.getId())
                 .titulo(notification.getTitulo())
                 .message(notification.getMessage())
-                .read(notification.isRead())
+                .read(notification.isVisto())
                 .fecha(notification.getCreatedDate().toString())
                 .denunciaTitulo(notification.getDenuncia() != null ? notification.getDenuncia().getTitulo() : null)
                 .solicitudTitulo(notification.getSolicitud() != null ? notification.getSolicitud().getTitulo() : null)

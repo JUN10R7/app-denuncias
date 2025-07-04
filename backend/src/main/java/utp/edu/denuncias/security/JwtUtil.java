@@ -112,6 +112,6 @@ public class JwtUtil {
         if (authentication != null && authentication.isAuthenticated()) {
             return authentication.getAuthorities().toString();
         }
-        return null;
+        return "404";
     }
 }

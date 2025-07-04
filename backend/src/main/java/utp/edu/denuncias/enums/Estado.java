@@ -35,7 +35,12 @@ public enum Estado {
      * Estado que indica que la denuncia no será atendida o no cumple con
      * los criterios establecidos para su gestión dentro del sistema.
      */
-    RECHAZADO("Rechazado", "La denuncia no será atendida o no cumple criterios.");
+    RECHAZADO("Rechazado", "La denuncia no será atendida o no cumple criterios."),
+    /**
+     * Estado que indica que la denuncia se encuentra almacenada en la base de datos,
+     * pero solo será accesible para usuarios o roles específicamente autorizados.
+     */
+    ELIMINADO("Eliminado", "La denuncia se almacenará en la base de datos pero será accesible para seleccionados.");
 
     /**
      * Representa el título descriptivo asociado a un elemento dentro de la enumeración.

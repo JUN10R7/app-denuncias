@@ -2,6 +2,7 @@ package utp.edu.denuncias.controller;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import utp.edu.denuncias.dto.CategoriaDTO;
 import utp.edu.denuncias.dto.EstadoDTO;
@@ -14,7 +15,8 @@ import java.util.List;
  * Controlador REST para la gestión y recuperación de listas de enumeraciones
  * como roles, categorías, estados y tipos de solicitud disponibles en el sistema.
  */
-@RestController("/enum")
+@RestController
+@RequestMapping("/enum")
 public class EnumController {
 
     /**

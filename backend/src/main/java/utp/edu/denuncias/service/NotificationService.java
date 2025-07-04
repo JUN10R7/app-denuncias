@@ -66,7 +66,7 @@ public class NotificationService {
         if (!notification.getDestinatario().getId().equals(usuario.getId())) {
             throw new AccessDeniedException("No puedes marcar como leída esta notificación");
         }
-        notification.setRead(true);
+        notification.setVisto(true);
         notificationRepository.save(notification);
     }
 
@@ -82,8 +82,8 @@ public class NotificationService {
     }
 
     public void marcarNotificacionesRelacionadasComoVistas(Solicitud solicitud) {
-        var relacionadas = notificationRepository.findBySolicitudAndReadFalse(solicitud);
-        relacionadas.forEach(n -> n.setRead(true));
+        var relacionadas = notificationRepository.findBySolicitudAndVistoFalse(solicitud);
+        relacionadas.forEach(n -> n.setVisto(true));
         notificationRepository.saveAll(relacionadas);
     }
 

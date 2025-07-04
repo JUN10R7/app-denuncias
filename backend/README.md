@@ -36,7 +36,7 @@ El backend está organizado en los siguientes paquetes principales:
 1. Clonar el repositorio.
 2. Configurar la base de datos en `application.properties`.
 3. Ejecutar la clase principal con Spring Boot.
-4. Acceder a Swagger o Postman para probar los endpoints.
+4. Acceder a Swagger o usar [Postman](./src/postman/README.md) para probar los endpoints.
 
 ---
 
