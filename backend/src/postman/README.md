@@ -10,7 +10,7 @@ Este documento describe el uso del archivo `app-denuncias.postman_collection.jso
 2. Tener Postman instalado o acceder a Postman Web.
 3. Importar la colección desde el archivo JSON:
    - Ir a Postman > "Import"
-   - Seleccionar el archivo `app-denuncias.postman_collection.json`
+   - Seleccionar el archivo [`app-denuncias.postman_collection.json`](./app-denuncias.postman_collection.json) ↩️ *(click para descargar)*
 
 ---
 
