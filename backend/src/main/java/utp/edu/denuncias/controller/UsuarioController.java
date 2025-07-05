@@ -6,13 +6,13 @@ import org.springframework.web.bind.annotation.*;
 import utp.edu.denuncias.dto.NotificationResponse;
 import utp.edu.denuncias.dto.UsuarioResponse;
 import utp.edu.denuncias.dto.UsuarioUpdateRequest;
-import utp.edu.denuncias.dto.UsuarioUpdateResponse;
 import utp.edu.denuncias.model.Usuario;
 import utp.edu.denuncias.service.UsuarioService;
 
 import java.util.List;
 
 @RestController
+@RequestMapping("/api/usuario")
 @RequiredArgsConstructor
 public class UsuarioController {
 
@@ -24,7 +24,7 @@ public class UsuarioController {
      * @return un {@link ResponseEntity} que contiene una lista de objetos {@link UsuarioResponse},
      *         cada uno representando la información de un usuario registrado.
      */
-    @GetMapping("/mod/usuario")
+    @GetMapping("/mod")
     public ResponseEntity<List<UsuarioResponse>> listarUsuariosActivos() {
         return ResponseEntity.ok(usuarioService.listarUsuariosActivos());
     }
@@ -35,7 +35,7 @@ public class UsuarioController {
      * @return un {@link ResponseEntity} que contiene una lista de objetos {@link UsuarioResponse},
      *         cada uno representando la información de un usuario registrado.
      */
-    @GetMapping("/admin/usuario")
+    @GetMapping("/admin")
     public ResponseEntity<List<UsuarioResponse>> listarUsuarios() {
         return ResponseEntity.ok(usuarioService.listarUsuarios());
     }
@@ -46,7 +46,7 @@ public class UsuarioController {
      * @param id identificador único del usuario que se desea buscar
      * @return un {@link ResponseEntity} que contiene el objeto {@link Usuario} correspondiente al identificador proporcionado
      */
-    @GetMapping("/mod/usuario/{id}")
+    @GetMapping("/mod/{id}")
     public ResponseEntity<UsuarioResponse> listarUsuario(@PathVariable Long id) {
         System.out.println("Buscando usuario con id: " + id);
         return ResponseEntity.ok(usuarioService.findById(id));
@@ -58,7 +58,7 @@ public class UsuarioController {
      * @return un {@link ResponseEntity} que contiene un {@link UsuarioResponse}
      *         con la información del usuario autenticado
      */
-    @GetMapping("/usuario")
+    @GetMapping
     public ResponseEntity<UsuarioResponse> getUsuario() {
         return ResponseEntity.ok(usuarioService.findByCurrentUser());
     }
@@ -70,12 +70,12 @@ public class UsuarioController {
      *
      * @param request objeto {@link UsuarioUpdateRequest} que contiene los nuevos valores para modificar
      *                los datos del usuario. Los campos nulos en la solicitud no modificarán los valores actuales.
-     * @return un {@link ResponseEntity} que incluye un objeto {@link UsuarioUpdateResponse} con la información
+     * @return un {@link ResponseEntity} que incluye un objeto {@link UsuarioResponse} con la información
      *         del usuario actualizado, excluyendo la contraseña.
      */
-    @PutMapping("/usuario")
-    public ResponseEntity<UsuarioUpdateResponse> updateUser(@RequestBody UsuarioUpdateRequest request) {
-        UsuarioUpdateResponse response = usuarioService.updateUser(request);
+    @PutMapping
+    public ResponseEntity<UsuarioResponse> updateUser(@RequestBody UsuarioUpdateRequest request) {
+        UsuarioResponse response = usuarioService.updateUser(request);
         System.out.println(response);
         return ResponseEntity.ok(response);
     }
@@ -86,8 +86,8 @@ public class UsuarioController {
      *
      * @param id Identificador único del usuario que se desea activar.
      */
-    @PutMapping("/admin/usuario/{id}")
-    public void updateUser(@PathVariable Long id) {
+    @PutMapping("/admin/{id}")
+    public void activarUser(@PathVariable Long id) {
         usuarioService.activarUsuario(id);
     }
 
@@ -96,7 +96,7 @@ public class UsuarioController {
      *
      * @param id identificador único del usuario que se desea eliminar
      */
-    @DeleteMapping("/admin/usuario/{id}")
+    @DeleteMapping("/admin/{id}")
     public void desactivarUsuario(@PathVariable Long id) {
         usuarioService.desactivarUsuario(id);
     }
@@ -109,7 +109,7 @@ public class UsuarioController {
      * @throws RuntimeException si no se puede obtener al usuario autenticado o el usuario no se encuentra
      *                          en el sistema.
      */
-    @DeleteMapping("/usuario")
+    @DeleteMapping
     public void desactivarUsuario() {
         usuarioService.desactivarUsuario();
     }
@@ -120,7 +120,7 @@ public class UsuarioController {
      * @return un {@link ResponseEntity} que contiene una lista de objetos {@link NotificationResponse},
      *         cada uno representando una notificación del usuario autenticado.
      */
-    @GetMapping("/usuario/notificaciones")
+    @GetMapping("/notificaciones")
     public ResponseEntity<List<NotificationResponse>> obtenerMisNotificaciones() {
         return ResponseEntity.ok(usuarioService.obtenerNotificaciones());
     }
@@ -130,7 +130,7 @@ public class UsuarioController {
      *
      * @param id identificador único de la notificación que se desea marcar como leída
      */
-    @PutMapping("/usuario/notificaciones/{id}")
+    @PutMapping("/notificaciones/{id}")
     public void marcarNotificationLeida(@PathVariable Long id) {
         usuarioService.marcarNotificationLeida(id);
     }

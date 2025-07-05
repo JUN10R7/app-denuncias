@@ -28,7 +28,7 @@ public class AuthService {
      * @throws IllegalArgumentException si el nombre de usuario ya está en uso.
      */
     public void register(UsuarioRequest request) {
-        if (userRepository.findByUsername(request.username()).isPresent()) {
+        if (userRepository.findByUsernameAndEnabledTrue(request.username()).isPresent()) {
             throw new IllegalArgumentException("El nombre de usuario ya está en uso");
         }
 
@@ -57,7 +57,7 @@ public class AuthService {
                 new UsernamePasswordAuthenticationToken(request.username(), request.password())
         );
 
-        Usuario usuario = userRepository.findByUsername(request.username())
+        Usuario usuario = userRepository.findByUsernameAndEnabledTrue(request.username())
                 .orElseThrow(() -> new UsernameNotFoundException("Usuario no encontrado"));
 
 

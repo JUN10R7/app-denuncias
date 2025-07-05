@@ -4,7 +4,6 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import utp.edu.denuncias.dto.DenunciaCambiarEstadoRequest;
 import utp.edu.denuncias.dto.DenunciaRequest;
 import utp.edu.denuncias.dto.DenunciaResponse;
 import utp.edu.denuncias.enums.Estado;
@@ -36,7 +35,7 @@ public class DenunciaService {
      */
     public DenunciaResponse nuevaDenuncia(DenunciaRequest request) {
         String username = JwtUtil.getCurrentUsername();
-        Usuario user = userRepository.findByUsername(username)
+        Usuario user = userRepository.findByUsernameAndEnabledTrue(username)
                 .orElseThrow(() -> new UsernameNotFoundException("No se pudo obtener el usuario autenticado"));
         Denuncia denuncia = Denuncia.builder()
                 .titulo(request.titulo())
@@ -74,7 +73,7 @@ public class DenunciaService {
      * @throws UsernameNotFoundException si no es posible obtener los datos del usuario autenticado.
      */
     public List<DenunciaResponse> listarDenunciasUsuario() {
-        Usuario user = userRepository.findByUsername(JwtUtil.getCurrentUsername())
+        Usuario user = userRepository.findByUsernameAndEnabledTrue(JwtUtil.getCurrentUsername())
                 .orElseThrow(() -> new UsernameNotFoundException("No se pudo obtener el usuario autenticado"));
         return DenunciaResponse.from(denunciaRepository.findByUsuarioId(user.getId()));
     }
@@ -115,7 +114,7 @@ public class DenunciaService {
         if (all) {
             return DenunciaResponse.from(denunciaRepository.findAllByModAsignadoIsNullAndEstadoNotIn(List.of(Estado.RESUELTO, Estado.RECHAZADO)));
         }
-        var user = userRepository.findByUsername(JwtUtil.getCurrentUsername())
+        var user = userRepository.findByUsernameAndEnabledTrue(JwtUtil.getCurrentUsername())
                 .orElseThrow(() -> new UsernameNotFoundException("No se pudo obtener el usuario autenticado"));
         return DenunciaResponse.from(denunciaRepository.findAllByModAsignadoIdAndEstadoNotIn(user.getId(), List.of(Estado.RESUELTO, Estado.RECHAZADO)));
     }
@@ -139,7 +138,7 @@ public class DenunciaService {
      */
     @Transactional
     public DenunciaResponse editarDenuncia(Long id, DenunciaRequest request) {
-        var user = userRepository.findByUsername(JwtUtil.getCurrentUsername())
+        var user = userRepository.findByUsernameAndEnabledTrue(JwtUtil.getCurrentUsername())
                 .orElseThrow(() -> new UsernameNotFoundException("No se pudo obtener el usuario autenticado"));
         var denuncia = denunciaRepository.findByUsuarioIdAndId(user.getId(), id)
                 .orElseThrow(() -> new RuntimeException("La denuncia con el ID " + id + " no existe"));
@@ -154,23 +153,22 @@ public class DenunciaService {
     }
 
     /**
-     * Cambia el estado de una denuncia existente en el sistema basado en la solicitud proporcionada.
+     * Actualiza el estado de una denuncia y notifica al usuario asociado sobre el cambio.
      *
-     * @param request el objeto {@code DenunciaCambiarEstadoRequest} que contiene el ID de la denuncia
-     *                y el nuevo estado al que se desea actualizar.
-     * @return un objeto {@code DenunciaResponse} que representa la denuncia actualizada
-     *         con su nuevo estado.
-     * @throws RuntimeException si no se encuentra una denuncia con el ID proporcionado en la solicitud.
+     * @param id El identificador único de la denuncia que se desea actualizar.
+     * @param estado El nuevo estado de la denuncia, representado como una cadena; debe coincidir con un valor en el enum Estado.
+     * @return Una instancia de DenunciaResponse que contiene la información actualizada de la denuncia.
+     * @throws RuntimeException Si no se encuentra una denuncia con el ID proporcionado.
      */
     @Transactional
-    public DenunciaResponse cambiarEstadoDenuncia(DenunciaCambiarEstadoRequest request) {
-        var denuncia = denunciaRepository.findById(request.id())
-                .orElseThrow(() -> new RuntimeException("La denuncia con el ID " + request.id() + " no existe"));
-        denuncia.setEstado(request.estado());
+    public DenunciaResponse cambiarEstadoDenuncia(Long id, String estado) {
+        var denuncia = denunciaRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("La denuncia con el ID " + id + " no existe"));
+        denuncia.setEstado(Estado.valueOf(estado));
         notificationService.notificar(
                 denuncia.getUsuario(),
                 "Se ha actualizado el estado de su denuncia.",
-                "El estado de su denuncia ha pasado a estado " + request.estado().getTitulo() + ".",
+                "El estado de su denuncia ha pasado a estado " + denuncia.getEstado().getTitulo() + ".",
                 denuncia,
                 null
         );

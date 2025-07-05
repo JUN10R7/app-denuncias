@@ -3,6 +3,8 @@ package utp.edu.denuncias.dto;
 import lombok.Builder;
 import utp.edu.denuncias.model.Solicitud;
 
+import java.util.List;
+
 /**
  * Representa la respuesta para una solicitud en el sistema, encapsulando
  * información relevante como su identificador, detalles, estado y metadatos.
@@ -11,10 +13,10 @@ import utp.edu.denuncias.model.Solicitud;
 public record SolicitudResponse(
         Long id,
         String titulo,
-        String mensaje,
+        String msg,
         String respuesta,
         String estado,
-        String tipo,
+        String tipoSolicitud,
         String createdDate,
         String endDate,
         String autor,
@@ -31,14 +33,26 @@ public record SolicitudResponse(
         return SolicitudResponse.builder()
                 .id(solicitud.getId())
                 .titulo(solicitud.getTitulo())
-                .mensaje(solicitud.getMsg())
+                .msg(solicitud.getMsg())
                 .respuesta(solicitud.getRespuesta())
                 .estado(solicitud.getEstado().name())
-                .tipo(solicitud.getTipoSolicitud().name())
+                .tipoSolicitud(solicitud.getTipoSolicitud().name())
                 .createdDate(solicitud.getCreatedDate().toString())
                 .endDate(solicitud.getEndDate().toString())
                 .autor(solicitud.getAutor().getUsername())
                 .revisor(solicitud.getRevisor().getUsername())
                 .build();
+    }
+
+    /**
+     * Convierte una lista de entidades {@code Solicitud} a una lista de objetos {@code SolicitudResponse}.
+     *
+     * @param solicitudes la lista de objetos {@code Solicitud} que se desea convertir.
+     * @return una lista de objetos {@code SolicitudResponse} creada a partir de los datos de las solicitudes proporcionadas.
+     */
+    public static List<SolicitudResponse> from(List<Solicitud> solicitudes) {
+        return solicitudes.stream()
+                .map(SolicitudResponse::from)
+                .toList();
     }
 }

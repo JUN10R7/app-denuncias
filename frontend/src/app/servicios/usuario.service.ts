@@ -1,9 +1,59 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from '../../environments/environment';
+import { Usuario } from '../model/usuario';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UsuarioService {
 
-  constructor() { }
+  private baseUrl = `${environment.apiUrl}/api/usuario`;
+
+  constructor(private http: HttpClient) { }
+
+  getUsuario() {
+    return this.http.get<Usuario>(`${this.baseUrl}`);
+  }
+
+  getUsuariosActivos() {
+    return this.http.get<Usuario[]>(`${this.baseUrl}/mod`);
+  }
+
+  getAllUsuarios() {
+    return this.http.get<Usuario[]>(`${this.baseUrl}/admin`);
+  }
+
+  getUsuarioById(id: number) {
+    return this.http.get<Usuario>(`${this.baseUrl}/mod/${id}`);
+  }
+
+  updateUsuario(usuario: Usuario) {
+    return this.http.put<Usuario>(`${this.baseUrl}`, usuario);
+  }
+
+  updateUsuarioById(id: number, usuario: Usuario) {
+    return this.http.put<Usuario>(`${this.baseUrl}/admin/${id}`, usuario);
+  }
+
+  deleteUsuario() {
+    this.http.delete(`${this.baseUrl}`).subscribe({
+      next: () => {
+        localStorage.clear();
+      }
+    });
+  }
+
+  deleteUsuarioById(id: number) {
+    return this.http.delete(`${this.baseUrl}/admin/${id}`);
+  }
+
+  getNotificaciones() {
+    return this.http.get<Notification[]>(`${this.baseUrl}/notificaciones`);
+  }
+
+  markNotificationAsRead(id: number) {
+    return this.http.put(`${this.baseUrl}/notificaciones/${id}`, {});
+  }
+
 }

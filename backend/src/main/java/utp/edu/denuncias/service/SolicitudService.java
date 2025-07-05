@@ -16,6 +16,7 @@ import utp.edu.denuncias.repository.UserRepository;
 import utp.edu.denuncias.security.JwtUtil;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 /**
  * Servicio encargado de gestionar las operaciones relacionadas con las solicitudes.
@@ -54,6 +55,60 @@ public class SolicitudService {
     private final NotificationService notificationService;
 
     /**
+     * Recupera una solicitud específica a partir de su identificador único.
+     * Si no se encuentra una solicitud con el ID proporcionado, lanza una excepción.
+     *
+     * @param id Identificador único de la solicitud.
+     * @return una instancia de {@link SolicitudResponse} que representa los datos de la solicitud encontrada.
+     * @throws RuntimeException si no existe una solicitud con el ID proporcionado.
+     */
+    public SolicitudResponse listarSolicitud(Long id) {
+        var solicitud = solicitudRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("La solicitud con el ID " + id + " no existe"));
+        return SolicitudResponse.from(solicitud);
+    }
+
+    /**
+     * Recupera todas las solicitudes relacionadas con el usuario autenticado cuya
+     * propiedad como autor o revisor tiene un estado distinto a RESUELTO o RECHAZADO.
+     *
+     * @return una lista de objetos {@link SolicitudResponse} que representan las solicitudes
+     *         asociadas al usuario autenticado, excluyendo las que se encuentren en estado
+     *         RESUELTO o RECHAZADO.
+     * @throws RuntimeException si no se puede obtener el usuario autenticado.
+     */
+    public List<SolicitudResponse> listarSolicitudes() {
+        var user = userRepository.findByUsernameAndEnabledTrue(JwtUtil.getCurrentUsername())
+                .orElseThrow(() -> new RuntimeException("No se pudo obtener el usuario autenticado"));
+        var estados = List.of(Estado.RESUELTO, Estado.RECHAZADO);
+        return SolicitudResponse.from(solicitudRepository.findByAutorOrRevisorIdAndEstadoNotIn(user.getId(), estados));
+    }
+
+    /**
+     * Lista todas las solicitudes en las que no se ha asignado un revisor,
+     * ordenadas por la fecha de creación en orden descendente.
+     *
+     * @return una lista de objetos {@link SolicitudResponse} que representan las solicitudes sin revisor asignado.
+     */
+    public List<SolicitudResponse> listarSolicitudesAdmin() {
+        return SolicitudResponse.from(solicitudRepository.findByRevisorIsNullOrderByCreatedDateDesc());
+    }
+
+    /**
+     * Lista las solicitudes asociadas a una denuncia específica, ordenadas por fecha de creación de manera descendente.
+     * Si no se encuentra la denuncia con el ID proporcionado, se lanza una excepción.
+     *
+     * @param id ID de la denuncia cuyos datos serán utilizados para obtener las solicitudes asociadas.
+     * @return una lista de objetos {@link SolicitudResponse} que representan las solicitudes asociadas
+     *         a la denuncia especificada.
+     * @throws RuntimeException si no existe una denuncia con el ID proporcionado.
+     */
+    public List<SolicitudResponse> listarSolicitudesDenuncia(Long id) {
+        denunciaRepository.findById(id).orElseThrow(() -> new RuntimeException("La denuncia con el ID " + id + " no existe"));
+        return SolicitudResponse.from(solicitudRepository.findByDenunciaIdOrderByCreatedDateDesc(id));
+    }
+
+    /**
      * Crea y persiste una nueva solicitud en el sistema en base a los datos proporcionados.
      * La solicitud puede incluir un revisor asignado si es requerida y si el autor posee
      * el rol adecuado (por ejemplo, ADMIN).
@@ -62,7 +117,7 @@ public class SolicitudService {
      *                incluyendo título, mensaje, ID de la denuncia, ID del revisor opcional y el tipo de solicitud.
      */
     public void realizarSolicitud(SolicitudRequest request) {
-        var autor = userRepository.findByUsername(JwtUtil.getCurrentUsername())
+        var autor = userRepository.findByUsernameAndEnabledTrue(JwtUtil.getCurrentUsername())
                 .orElseThrow(() -> new RuntimeException("No se pudo obtener el usuario autenticado"));
         var denuncia = denunciaRepository.findById(request.idDenuncia())
                 .orElseThrow(() -> new RuntimeException("No se pudo obtener la denuncia con ID " + request.idDenuncia()));
@@ -114,7 +169,7 @@ public class SolicitudService {
      */
     @Transactional
     public SolicitudResponse revisarSolicitud(SolicitudRevisionRequest request) {
-        var revisor = userRepository.findByUsername(JwtUtil.getCurrentUsername())
+        var revisor = userRepository.findByUsernameAndEnabledTrue(JwtUtil.getCurrentUsername())
                 .orElseThrow(() -> new RuntimeException("No se pudo obtener el usuario autenticado"));
         var solicitud = solicitudRepository.findById(request.id())
                 .orElseThrow(() -> new RuntimeException("No se pudo obtener la solicitud con ID " + request.id()));

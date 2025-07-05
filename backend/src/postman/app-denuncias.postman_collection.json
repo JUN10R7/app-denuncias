@@ -19,7 +19,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"nombres\": \"Junior\",\r\n    \"apellidos\": \"Bautista\",\r\n    \"username\": \"bausami\",\r\n    \"password\": \"123\",\r\n    \"dni\": \"12345678\",\r\n    \"email\": \"junior@bs.com\",\r\n    \"rol\": \"ADMIN\"\r\n}",
+							"raw": "{\r\n    \"nombres\": \"Junior\",\r\n    \"apellidos\": \"Bautista\",\r\n    \"username\": \"bausami\",\r\n    \"password\": \"1234\",\r\n    \"dni\": \"12345678\",\r\n    \"email\": \"junior@bs.com\",\r\n    \"rol\": \"ADMIN\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -45,7 +45,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"nombres\": \"Junior\",\r\n    \"apellidos\": \"Bautista\",\r\n    \"username\": \"bausami\",\r\n    \"password\": \"123\",\r\n    \"dni\": \"12345678\",\r\n    \"email\": \"junior@bs.com\",\r\n    \"rol\": \"ADMIN\"\r\n}",
+									"raw": "{\r\n    \"nombres\": \"Junior\",\r\n    \"apellidos\": \"Bautista\",\r\n    \"username\": \"bausami\",\r\n    \"password\": \"1234\",\r\n    \"dni\": \"12345678\",\r\n    \"email\": \"junior@bs.com\",\r\n    \"rol\": \"ADMIN\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -570,12 +570,13 @@
 									}
 								},
 								"url": {
-									"raw": "localhost:8080/usuario",
+									"raw": "localhost:8080/api/usuario",
 									"host": [
 										"localhost"
 									],
 									"port": "8080",
 									"path": [
+										"api",
 										"usuario"
 									]
 								}
@@ -676,12 +677,13 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "localhost:8080/usuario",
+									"raw": "localhost:8080/api/usuario",
 									"host": [
 										"localhost"
 									],
 									"port": "8080",
 									"path": [
+										"api",
 										"usuario"
 									]
 								}
@@ -761,17 +763,25 @@
 							"name": "Desactivar usuario",
 							"request": {
 								"auth": {
-									"type": "noauth"
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJjZ29tZXoiLCJleHAiOjE3NTE3NDAzNTV9.YYj1QD4e7j8NNzSaoWF2VZOfcpH4RsFSsyavU7Bf-wKd3AKKRMEQ7515ohQJz51yfR0aK2zmkJ24IKzqiipNkg",
+											"type": "string"
+										}
+									]
 								},
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "localhost:8080/usuario",
+									"raw": "localhost:8080/api/usuario",
 									"host": [
 										"localhost"
 									],
 									"port": "8080",
 									"path": [
+										"api",
 										"usuario"
 									]
 								}
@@ -799,14 +809,15 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "localhost:8080/mod/usuario",
+									"raw": "localhost:8080/api/usuario/mod",
 									"host": [
 										"localhost"
 									],
 									"port": "8080",
 									"path": [
-										"mod",
-										"usuario"
+										"api",
+										"usuario",
+										"mod"
 									]
 								}
 							},
@@ -898,14 +909,15 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "localhost:8080/mod/usuario/2",
+									"raw": "localhost:8080/api/usuario/mod/2",
 									"host": [
 										"localhost"
 									],
 									"port": "8080",
 									"path": [
-										"mod",
+										"api",
 										"usuario",
+										"mod",
 										"2"
 									]
 								}
@@ -992,19 +1004,27 @@
 							"name": "Desactivar usuario",
 							"request": {
 								"auth": {
-									"type": "noauth"
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJjZ29tZXoiLCJleHAiOjE3NTE3NDAzNTV9.YYj1QD4e7j8NNzSaoWF2VZOfcpH4RsFSsyavU7Bf-wKd3AKKRMEQ7515ohQJz51yfR0aK2zmkJ24IKzqiipNkg",
+											"type": "string"
+										}
+									]
 								},
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "localhost:8080/admin/usuario/52",
+									"raw": "localhost:8080/api/usuario/admin/52",
 									"host": [
 										"localhost"
 									],
 									"port": "8080",
 									"path": [
-										"admin",
+										"api",
 										"usuario",
+										"admin",
 										"52"
 									]
 								}
@@ -1015,20 +1035,28 @@
 							"name": "Activar usuario",
 							"request": {
 								"auth": {
-									"type": "noauth"
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJjZ29tZXoiLCJleHAiOjE3NTE3NDAzNTV9.YYj1QD4e7j8NNzSaoWF2VZOfcpH4RsFSsyavU7Bf-wKd3AKKRMEQ7515ohQJz51yfR0aK2zmkJ24IKzqiipNkg",
+											"type": "string"
+										}
+									]
 								},
 								"method": "PUT",
 								"header": [],
 								"url": {
-									"raw": "localhost:8080/admin/usuario/",
+									"raw": "localhost:8080/api/usuario/admin/2",
 									"host": [
 										"localhost"
 									],
 									"port": "8080",
 									"path": [
-										"admin",
+										"api",
 										"usuario",
-										""
+										"admin",
+										"2"
 									]
 								}
 							},
@@ -1050,14 +1078,15 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "localhost:8080/admin/usuario",
+									"raw": "localhost:8080/api/usuario/admin",
 									"host": [
 										"localhost"
 									],
 									"port": "8080",
 									"path": [
-										"admin",
-										"usuario"
+										"api",
+										"usuario",
+										"admin"
 									]
 								}
 							},
@@ -1168,14 +1197,15 @@
 									}
 								},
 								"url": {
-									"raw": "localhost:8080/usuario/denuncia",
+									"raw": "localhost:8080/api/denuncia/usuario",
 									"host": [
 										"localhost"
 									],
 									"port": "8080",
 									"path": [
-										"usuario",
-										"denuncia"
+										"api",
+										"denuncia",
+										"usuario"
 									]
 								}
 							},
@@ -1285,14 +1315,15 @@
 									}
 								},
 								"url": {
-									"raw": "localhost:8080/usuario/denuncia/2",
+									"raw": "localhost:8080/api/denuncia/usuario/2",
 									"host": [
 										"localhost"
 									],
 									"port": "8080",
 									"path": [
-										"usuario",
+										"api",
 										"denuncia",
+										"usuario",
 										"2"
 									]
 								}
@@ -1395,14 +1426,15 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "localhost:8080/usuario/denuncia",
+									"raw": "localhost:8080/api/denuncia/usuario",
 									"host": [
 										"localhost"
 									],
 									"port": "8080",
 									"path": [
-										"usuario",
-										"denuncia"
+										"api",
+										"denuncia",
+										"usuario"
 									]
 								}
 							},
@@ -1494,14 +1526,15 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "localhost:8080/usuario/denuncia/1",
+									"raw": "localhost:8080/api/denuncia/usuario/1",
 									"host": [
 										"localhost"
 									],
 									"port": "8080",
 									"path": [
-										"usuario",
+										"api",
 										"denuncia",
+										"usuario",
 										"1"
 									]
 								}
@@ -1595,14 +1628,15 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "localhost:8080/usuario/denuncia/1",
+									"raw": "localhost:8080/api/denuncia/usuario/1",
 									"host": [
 										"localhost"
 									],
 									"port": "8080",
 									"path": [
-										"usuario",
+										"api",
 										"denuncia",
+										"usuario",
 										"1"
 									]
 								}
@@ -1763,14 +1797,15 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "localhost:8080/mod/denuncia/true",
+									"raw": "localhost:8080/api/denuncia/mod/true",
 									"host": [
 										"localhost"
 									],
 									"port": "8080",
 									"path": [
-										"mod",
+										"api",
 										"denuncia",
+										"mod",
 										"true"
 									]
 								}
@@ -1864,14 +1899,15 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "localhost:8080/mod/denuncia/false",
+									"raw": "localhost:8080/api/denuncia/mod/false",
 									"host": [
 										"localhost"
 									],
 									"port": "8080",
 									"path": [
-										"mod",
+										"api",
 										"denuncia",
+										"mod",
 										"false"
 									]
 								}
@@ -1899,14 +1935,15 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "localhost:8080/admin/denuncia",
+									"raw": "localhost:8080/api/denuncia/admin",
 									"host": [
 										"localhost"
 									],
 									"port": "8080",
 									"path": [
-										"admin",
-										"denuncia"
+										"api",
+										"denuncia",
+										"admin"
 									]
 								}
 							},
@@ -1928,14 +1965,15 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "localhost:8080/admin/denuncia/usuario/56",
+									"raw": "localhost:8080/api/denuncia/admin/usuario/56",
 									"host": [
 										"localhost"
 									],
 									"port": "8080",
 									"path": [
-										"admin",
+										"api",
 										"denuncia",
+										"admin",
 										"usuario",
 										"56"
 									]
@@ -1959,14 +1997,15 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "localhost:8080/admin/denuncia/mod/56",
+									"raw": "localhost:8080/api/denuncia/admin/mod/56",
 									"host": [
 										"localhost"
 									],
 									"port": "8080",
 									"path": [
-										"admin",
+										"api",
 										"denuncia",
+										"admin",
 										"mod",
 										"56"
 									]
@@ -1990,15 +2029,16 @@
 								"method": "PUT",
 								"header": [],
 								"url": {
-									"raw": "localhost:8080/admin/denuncia/asignarMod/2/55",
+									"raw": "localhost:8080/api/denuncia/admin/asignar/2/55",
 									"host": [
 										"localhost"
 									],
 									"port": "8080",
 									"path": [
-										"admin",
+										"api",
 										"denuncia",
-										"asignarMod",
+										"admin",
+										"asignar",
 										"2",
 										"55"
 									]
@@ -2094,25 +2134,19 @@
 								},
 								"method": "PUT",
 								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"id\": 2,\r\n    \"estado\": \"EN_REVISION\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
 								"url": {
-									"raw": "localhost:8080/admin/denuncia/cambiarEstado",
+									"raw": "localhost:8080/api/denuncia/admin/estado/2/RECHAZADA",
 									"host": [
 										"localhost"
 									],
 									"port": "8080",
 									"path": [
-										"admin",
+										"api",
 										"denuncia",
-										"cambiarEstado"
+										"admin",
+										"estado",
+										"2",
+										"RECHAZADA"
 									]
 								}
 							},
@@ -2233,13 +2267,13 @@
 									}
 								},
 								"url": {
-									"raw": "localhost:8080/mod/solicitud",
+									"raw": "localhost:8080/api/solicitud",
 									"host": [
 										"localhost"
 									],
 									"port": "8080",
 									"path": [
-										"mod",
+										"api",
 										"solicitud"
 									]
 								}
@@ -2271,13 +2305,13 @@
 									}
 								},
 								"url": {
-									"raw": "localhost:8080/mod/solicitud",
+									"raw": "localhost:8080/api/solicitud",
 									"host": [
 										"localhost"
 									],
 									"port": "8080",
 									"path": [
-										"mod",
+										"api",
 										"solicitud"
 									]
 								}
@@ -2362,6 +2396,129 @@
 									"body": "{\n    \"id\": 1,\n    \"titulo\": \"Quiero asignar esta denuncia.\",\n    \"mensaje\": \"Te doy plazo de un mes para culminar con tu tarea.\",\n    \"respuesta\": null,\n    \"estado\": \"RESUELTO\",\n    \"tipo\": \"ASIGNAR_MODERADOR\",\n    \"createdDate\": \"2025-07-04T14:14:44\",\n    \"endDate\": \"2025-07-04T14:27:47.840426\",\n    \"autor\": \"mfernandez\",\n    \"revisor\": \"bausami\"\n}"
 								}
 							]
+						},
+						{
+							"name": "Listar solicitud",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJiYXVzYW1pIiwiZXhwIjoxNzUxNzM5MzM3fQ._ir8VDYSejr5kWXScqXgbAhr7CDJAYGi1rDa_lDBeaCGhDhxSUduR5A9lTT7U6IwaX8m9DBUDjK8BJFsycSPBw",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/api/solicitud/2",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"solicitud",
+										"2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Listar solicitudes",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJiYXVzYW1pIiwiZXhwIjoxNzUxNzM5MzM3fQ._ir8VDYSejr5kWXScqXgbAhr7CDJAYGi1rDa_lDBeaCGhDhxSUduR5A9lTT7U6IwaX8m9DBUDjK8BJFsycSPBw",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/api/solicitud/listar",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"solicitud",
+										"listar"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Listar solicitudes sin revisor",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJiYXVzYW1pIiwiZXhwIjoxNzUxNzM5MzM3fQ._ir8VDYSejr5kWXScqXgbAhr7CDJAYGi1rDa_lDBeaCGhDhxSUduR5A9lTT7U6IwaX8m9DBUDjK8BJFsycSPBw",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/api/solicitud/admin/listar",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"solicitud",
+										"admin",
+										"listar"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Listar solicitudes de denuncia",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJiYXVzYW1pIiwiZXhwIjoxNzUxNzM5MzM3fQ._ir8VDYSejr5kWXScqXgbAhr7CDJAYGi1rDa_lDBeaCGhDhxSUduR5A9lTT7U6IwaX8m9DBUDjK8BJFsycSPBw",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/api/solicitud/admin/denuncia/2",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"solicitud",
+										"admin",
+										"denuncia",
+										"2"
+									]
+								}
+							},
+							"response": []
 						}
 					]
 				},
@@ -2377,12 +2534,13 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "localhost:8080/enum/roles",
+									"raw": "localhost:8080/api/enum/roles",
 									"host": [
 										"localhost"
 									],
 									"port": "8080",
 									"path": [
+										"api",
 										"enum",
 										"roles"
 									]
@@ -2469,12 +2627,13 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "localhost:8080/enum/categorias",
+									"raw": "localhost:8080/api/enum/categorias",
 									"host": [
 										"localhost"
 									],
 									"port": "8080",
 									"path": [
+										"api",
 										"enum",
 										"categorias"
 									]
@@ -2561,12 +2720,13 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "localhost:8080/enum/estados",
+									"raw": "localhost:8080/api/enum/estados",
 									"host": [
 										"localhost"
 									],
 									"port": "8080",
 									"path": [
+										"api",
 										"enum",
 										"estados"
 									]
@@ -2653,12 +2813,13 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "localhost:8080/enum/tiposSolicitud",
+									"raw": "localhost:8080/api/enum/tiposSolicitud",
 									"host": [
 										"localhost"
 									],
 									"port": "8080",
 									"path": [
+										"api",
 										"enum",
 										"tiposSolicitud"
 									]
@@ -2757,12 +2918,13 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "localhost:8080/usuario/notificaciones",
+									"raw": "localhost:8080/api/usuario/notificaciones",
 									"host": [
 										"localhost"
 									],
 									"port": "8080",
 									"path": [
+										"api",
 										"usuario",
 										"notificaciones"
 									]
@@ -2856,12 +3018,13 @@
 								"method": "PUT",
 								"header": [],
 								"url": {
-									"raw": "localhost:8080/usuario/notificaciones/102",
+									"raw": "localhost:8080/api/usuario/notificaciones/102",
 									"host": [
 										"localhost"
 									],
 									"port": "8080",
 									"path": [
+										"api",
 										"usuario",
 										"notificaciones",
 										"102"

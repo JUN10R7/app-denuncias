@@ -17,7 +17,7 @@ public interface UserRepository extends JpaRepository<Usuario, Long> {
      * @param username Nombre de usuario
      * @return Optional con el usuario encontrado o vacío si no existe
      */
-    Optional<Usuario> findByUsername(String username);
+    Optional<Usuario> findByUsernameAndEnabledTrue(String username);
 
     /**
      * Devuelve una lista de usuarios que tienen el atributo "enabled" establecido en true.

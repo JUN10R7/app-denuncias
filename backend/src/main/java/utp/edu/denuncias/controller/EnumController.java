@@ -16,7 +16,7 @@ import java.util.List;
  * como roles, categorías, estados y tipos de solicitud disponibles en el sistema.
  */
 @RestController
-@RequestMapping("/enum")
+@RequestMapping("/api/enum")
 public class EnumController {
 
     /**

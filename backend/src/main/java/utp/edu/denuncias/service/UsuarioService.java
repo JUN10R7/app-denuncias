@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 import utp.edu.denuncias.dto.NotificationResponse;
 import utp.edu.denuncias.dto.UsuarioResponse;
 import utp.edu.denuncias.dto.UsuarioUpdateRequest;
-import utp.edu.denuncias.dto.UsuarioUpdateResponse;
 import utp.edu.denuncias.model.Usuario;
 import utp.edu.denuncias.repository.UserRepository;
 import utp.edu.denuncias.security.JwtUtil;
@@ -60,7 +59,7 @@ public class UsuarioService {
 
     public UsuarioResponse findByCurrentUser() {
         String username = JwtUtil.getCurrentUsername();
-        Usuario usuario = userRepository.findByUsername(username).orElseThrow(() -> new RuntimeException("No se pudo obtener el usuario autenticado"));
+        Usuario usuario = userRepository.findByUsernameAndEnabledTrue(username).orElseThrow(() -> new RuntimeException("No se pudo obtener el usuario autenticado"));
         return UsuarioResponse.from(usuario);
     }
 
@@ -71,19 +70,19 @@ public class UsuarioService {
      *
      * @param request Objeto {@link UsuarioUpdateRequest} que contiene los nuevos datos para actualizar el usuario.
      *                Los valores nulos en la solicitud no actualizarán las propiedades correspondientes.
-     * @return Un objeto {@link UsuarioUpdateResponse} que representa el usuario actualizado, incluyendo su información
+     * @return Un objeto {@link UsuarioResponse} que representa el usuario actualizado, incluyendo su información
      * básica excepto la contraseña, la cual es manipulada de forma segura.
      * @throws RuntimeException Si el usuario no es encontrado en el sistema.
      */
     @Transactional
-    public UsuarioUpdateResponse updateUser(UsuarioUpdateRequest request) {
+    public UsuarioResponse updateUser(UsuarioUpdateRequest request) {
         String username = JwtUtil.getCurrentUsername();
 
         if (username == null || username.equals("anonymousUser")) {
             throw new RuntimeException("No se pudo obtener el usuario autenticado");
         }
 
-        Usuario usuario = userRepository.findByUsername(username).orElseThrow(() ->
+        Usuario usuario = userRepository.findByUsernameAndEnabledTrue(username).orElseThrow(() ->
                 new RuntimeException("Usuario con " + username + ", no encontrado"));
 
         if (request.username() != null) {
@@ -99,17 +98,7 @@ public class UsuarioService {
             usuario.setRol(request.rol());
         }
 
-        userRepository.save(usuario);
-
-        return UsuarioUpdateResponse.builder()
-                .message("Se ha actualizado correctamente el usuario.")
-                .nombres(usuario.getNombres())
-                .apellidos(usuario.getApellidos())
-                .username(usuario.getUsername())
-                .dni(usuario.getDni())
-                .email(usuario.getEmail())
-                .rol(usuario.getRol().name())
-                .build();
+        return UsuarioResponse.from(userRepository.save(usuario));
     }
 
     /**
@@ -151,7 +140,7 @@ public class UsuarioService {
     @Transactional
     public void desactivarUsuario() {
         String username = JwtUtil.getCurrentUsername();
-        Usuario usuario = userRepository.findByUsername(username)
+        Usuario usuario = userRepository.findByUsernameAndEnabledTrue(username)
                 .orElseThrow(() -> new RuntimeException("No se pudo obtener el usuario autenticado"));
         usuario.setEnabled(false);
         userRepository.save(usuario);
@@ -165,7 +154,7 @@ public class UsuarioService {
      * @throws RuntimeException Si no se puede obtener el usuario autenticado.
      */
     public List<NotificationResponse> obtenerNotificaciones() {
-        var user = userRepository.findByUsername(JwtUtil.getCurrentUsername())
+        var user = userRepository.findByUsernameAndEnabledTrue(JwtUtil.getCurrentUsername())
                 .orElseThrow(() -> new RuntimeException("No se pudo obtener el usuario autenticado"));
         return notificationService.obtenerNotificaciones(user.getId());
     }
@@ -177,7 +166,7 @@ public class UsuarioService {
      * @throws RuntimeException Si no se puede obtener el usuario autenticado.
      */
     public void marcarNotificationLeida(Long id) {
-        var user = userRepository.findByUsername(JwtUtil.getCurrentUsername())
+        var user = userRepository.findByUsernameAndEnabledTrue(JwtUtil.getCurrentUsername())
                 .orElseThrow(() -> new RuntimeException("No se pudo obtener el usuario autenticado"));
         notificationService.marcarComoLeida(id, user);
     }
