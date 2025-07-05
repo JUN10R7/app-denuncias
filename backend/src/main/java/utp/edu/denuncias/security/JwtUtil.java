@@ -51,9 +51,10 @@ public class JwtUtil {
      */
     public String generateToken(Usuario user) {
         return Jwts.builder()
-                .setSubject(user.getUsername())             // DNI usado como subject
-                .setExpiration(new Date(System.currentTimeMillis() + expiration)) // Expiración
-                .signWith(secretKey, SignatureAlgorithm.HS512)  // Firma con HS512
+                .setSubject(user.getUsername())
+                .claim("role", user.getRol().name())
+                .setExpiration(new Date(System.currentTimeMillis() + expiration))
+                .signWith(secretKey, SignatureAlgorithm.HS512)
                 .compact();
     }
 

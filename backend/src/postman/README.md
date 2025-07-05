@@ -6,11 +6,11 @@ Este documento describe el uso del archivo `app-denuncias.postman_collection.jso
 
 ## 📦 Requisitos previos
 
-1. Tener el [backend](../../README.md) corriendo localmente o en un entorno accesible (por defecto en `http://localhost:8080`).
+1. Tener el [backend](../..) corriendo localmente o en un entorno accesible (por defecto en `http://localhost:8080`).
 2. Tener Postman instalado o acceder a Postman Web.
 3. Importar la colección desde el archivo JSON:
    - Ir a Postman > "Import"
-   - Seleccionar el archivo [`app-denuncias.postman_collection.json`](./app-denuncias.postman_collection.json) ↩️ *(click para descargar)*
+   - Seleccionar el archivo `app-denuncias.postman_collection.json`
 
 ---
 
