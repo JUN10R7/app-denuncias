@@ -80,8 +80,7 @@ public class SolicitudService {
     public List<SolicitudResponse> listarSolicitudes() {
         var user = userRepository.findByUsernameAndEnabledTrue(JwtUtil.getCurrentUsername())
                 .orElseThrow(() -> new RuntimeException("No se pudo obtener el usuario autenticado"));
-        var estados = List.of(Estado.RESUELTO, Estado.RECHAZADO);
-        return SolicitudResponse.from(solicitudRepository.findByAutorOrRevisorIdAndEstadoNotIn(user.getId(), estados));
+        return SolicitudResponse.from(solicitudRepository.findByAutorOrRevisorId(user.getId()));
     }
 
     /**

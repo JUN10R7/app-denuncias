@@ -10,10 +10,10 @@ import java.util.List;
  * Contiene el identificador único, el título descriptivo y una descripción detallada del rol.
  *
  * @param id          identificador único del rol
- * @param titulo      título descriptivo del rol
- * @param descripcion descripción detallada del rol
+ * @param nombre      título descriptivo del rol
+ * @param description descripción detallada del rol
  */
-public record RolDTO(String id, String titulo, String descripcion) {
+public record RolDTO(String id, String nombre, String description) {
     /**
      * Obtiene una lista de todos los roles disponibles en el sistema, representados como instancias de {@code RolDTO}.
      *

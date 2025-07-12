@@ -1,0 +1,107 @@
+<div class="p-4 md:p-6 max-w-4xl mx-auto">
+  <h2
+    class="text-2xl font-semibold mb-6 text-text-light dark:text-text-dark text-center"
+  >
+    Listado de Denuncias
+  </h2>
+
+  <div
+    *ngIf="denuncias.length === 0"
+    class="text-muted-light dark:text-muted-dark text-center"
+  >
+    No hay denuncias registradas.
+  </div>
+
+  <div class="flex flex-col gap-4">
+    <div
+      *ngFor="let denuncia of denuncias"
+      #cardRef
+      (click)="verDetalle((denuncia.id ?? '').toString())"
+      class="cursor-pointer bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark shadow-sm hover:shadow-md transition-shadow px-4 py-3 rounded-md"
+    >
+      <div class="space-y-1 text-sm">
+        <h3
+          class="text-base md:text-lg font-semibold text-primary-light dark:text-primary-dark"
+        >
+          {{ denuncia.titulo }}
+        </h3>
+
+        <p
+          class="text-sm leading-snug text-muted-light dark:text-muted-dark italic"
+        >
+          {{ denuncia.description }}
+        </p>
+
+        <div class="flex flex-wrap gap-x-2 gap-y-1 mt-2 text-xs">
+          <span
+            ><strong class="text-muted-light dark:text-muted-dark"
+              >Lugar:</strong
+            >
+            {{ denuncia.lugar }}</span
+          >
+          <span
+            ><strong class="text-muted-light dark:text-muted-dark"
+              >Categoría:</strong
+            >
+            {{
+              categoriasMap.get(denuncia.categoria) || "No especificada"
+            }}</span
+          >
+          <span
+            ><strong class="text-muted-light dark:text-muted-dark"
+              >Fecha:</strong
+            >
+            {{ denuncia.fecha | date : "mediumDate" }}</span
+          >
+        </div>
+
+        <div class="flex flex-wrap gap-x-2 gap-y-1 mt-1 text-xs">
+          <span *ngIf="denuncia.usuario">
+            <strong class="text-muted-light dark:text-muted-dark"
+              >Usuario:</strong
+            >
+            <a
+              (click)="verPerfil(denuncia.usuario); $event.stopPropagation()"
+              class="text-primary-light dark:text-primary-dark hover:underline cursor-pointer"
+            >
+              {{ denuncia.usuario }}
+            </a>
+          </span>
+
+          <span *ngIf="denuncia.mod; else noMod">
+            <strong class="text-muted-light dark:text-muted-dark"
+              >Moderador:</strong
+            >
+            <a
+              (click)="verPerfil(denuncia.mod); $event.stopPropagation()"
+              class="text-primary-light dark:text-primary-dark hover:underline cursor-pointer"
+            >
+              {{ denuncia.mod }}
+            </a>
+          </span>
+        </div>
+        <ng-template #noMod>
+          <span class="text-muted-light dark:text-muted-dark italic text-xs"
+            >Sin moderador asignado</span
+          >
+        </ng-template>
+      </div>
+
+      <div class="mt-3 flex justify-between items-center">
+        <button
+          (click)="
+            solicitar((denuncia.id ?? '').toString()); $event.stopPropagation()
+          "
+          class="px-3 py-1 text-xs font-medium rounded border border-muted-light dark:border-muted-dark bg-white dark:bg-surface-dark text-text-light dark:text-text-dark hover:bg-muted-light/30 dark:hover:bg-muted-dark/20 transition"
+        >
+          Solicitud
+        </button>
+        <span
+          class="px-2 py-0.5 text-xs font-medium rounded-full bg-primary-light/10 text-primary-light dark:bg-primary-dark/10 dark:text-primary-dark"
+        >
+          {{ estadosMap.get(denuncia.estado || "") || "No especificado" }}
+        </span>
+      </div>
+    </div>
+  </div>
+</div>

@@ -35,8 +35,9 @@ El backend está organizado en los siguientes paquetes principales:
 
 1. Clonar el repositorio.
 2. Configurar la base de datos en `application.properties`.
-3. Ejecutar la clase principal con Spring Boot.
-4. Acceder a Swagger o usar [Postman](./src/postman) para probar los endpoints.
+3. Configurar el JWT Secret como `env` en `application.properties`, puedes generar uno [aquí](https://jwtsecretkeygenerator.com/).
+4. Ejecutar la clase principal con Spring Boot.
+5. Acceder a Swagger o usar [Postman](./src/postman) para probar los endpoints.
 
 ---
 
@@ -45,9 +46,9 @@ El backend está organizado en los siguientes paquetes principales:
 - Uso de JWT para autenticación sin estado.
 - Tres roles definidos: `USER`, `MOD`, `ADMIN`.
 - Filtros de autorización para rutas protegidas:
-  - `/usuario/**`, `/enum/**`: Acceso para cualquier usuario autenticado.
-  - `/mod/**`: Solo moderadores y administradores.
-  - `/admin/**`: Solo administradores.
+  - `/api/usuario/**`, `/api/denuncia/usuario/**`: Acceso para cualquier usuario autenticado.
+  - `/api/usuario/mod/**`, `/api/denuncia/mod/**`, `/api/solicitud/mod/**`: Solo moderadores y administradores.
+  - `/api/usuario/admin/**`, `/api/denuncia/admin/**`, `/api/solicitud/admin/**`: Solo administradores.
 
 ---
 
@@ -58,16 +59,16 @@ El backend está organizado en los siguientes paquetes principales:
 - `POST /registro`: Registro de nuevo usuario.
 
 ### Usuarios y Roles
-- `GET /usuario/roles`: Obtener roles disponibles.
-- `GET /usuario/estados`: Estados de denuncia.
-- `GET /usuario/categorias`: Categorías de denuncia.
-- `GET /usuario/tiposSolicitud`: Tipos de solicitud posibles.
+- `GET /api/anum/roles`: Obtener roles disponibles.
+- `GET /api/anum/estados`: Obtener los estados de denuncia.
+- `GET /api/anum/categorias`: Obtener las categorías de denuncia.
+- `GET /api/anum/tiposSolicitud`: Obtener los tipos de solicitud disponibles.
 
 ### Denuncias
 - Crear, listar, modificar estado, archivar, etc.
 
 ### Solicitudes
-- Crear solicitud (asignación, cambio de estado, eliminación...).
+- Crear solicitud (asignación y cambio de estado).
 - Revisión y resolución de solicitudes.
 
 ### Notificaciones

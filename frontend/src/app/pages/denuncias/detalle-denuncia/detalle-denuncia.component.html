@@ -1,0 +1,103 @@
+<div class="p-4 md:p-6 max-w-4xl mx-auto">
+  <div
+    class="bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark shadow-sm rounded-md p-5 space-y-4"
+  >
+    <div class="text-center">
+      <p
+        class="text-xl md:text-2xl font-bold text-primary-light dark:text-primary-dark"
+      >
+        {{ denuncia.titulo }}
+      </p>
+    </div>
+
+    <div class="space-y-2 text-sm md:text-base">
+      <p>
+        <strong class="text-muted-light dark:text-muted-dark"
+          >Descripción:</strong
+        ><br />
+        {{ denuncia.description }}
+      </p>
+
+      <p>
+        <strong class="text-muted-light dark:text-muted-dark">Lugar:</strong>
+        {{ denuncia.lugar }}
+      </p>
+
+      <p>
+        <strong class="text-muted-light dark:text-muted-dark"
+          >Categoría:</strong
+        >
+        {{ categoriasMap.get(denuncia.categoria) || "No especificada" }}
+      </p>
+
+      <p>
+        <strong class="text-muted-light dark:text-muted-dark">Estado:</strong>
+        {{ estadosMap.get(denuncia.estado || "") || "Pendiente" }}
+      </p>
+
+      <p>
+        <strong class="text-muted-light dark:text-muted-dark">Fecha:</strong>
+        {{ denuncia.fecha | date : "medium" }}
+      </p>
+
+      <p>
+        <strong class="text-muted-light dark:text-muted-dark">Usuario:</strong>
+        <span
+          class="cursor-pointer hover:underline text-primary-light dark:text-primary-dark"
+          (click)="verPerfil(denuncia.usuario!)"
+        >
+          {{ denuncia.usuario }}
+        </span>
+        <span class="text-muted-light dark:text-muted-dark text-xs">
+          (ID: {{ denuncia.idUsuario }})
+        </span>
+      </p>
+
+      <ng-container *ngIf="denuncia.mod; else noMod">
+        <p>
+          <strong class="text-muted-light dark:text-muted-dark"
+            >Moderador:</strong
+          >
+          <span
+            class="cursor-pointer hover:underline text-primary-light dark:text-primary-dark"
+            (click)="verPerfil(denuncia.mod!)"
+          >
+            {{ denuncia.mod }}
+          </span>
+          <span class="text-muted-light dark:text-muted-dark text-xs">
+            (ID: {{ denuncia.idMod }})
+          </span>
+        </p>
+      </ng-container>
+
+      <ng-template #noMod>
+        <p class="italic text-muted-light dark:text-muted-dark text-sm">
+          Sin moderador asignado
+        </p>
+      </ng-template>
+    </div>
+
+    <div
+      *ngIf="isAdmin()"
+      class="pt-4 border-t border-muted-light dark:border-muted-dark"
+    >
+      <h3 class="text-lg font-semibold mb-4 text-center">
+        Solicitudes relacionadas
+      </h3>
+
+      <div class="flex justify-center mb-4">
+        <button
+          (click)="crearSolicitud()"
+          class="px-5 py-2.5 rounded-lg text-sm font-semibold bg-primary-light text-white dark:bg-primary-dark dark:text-white shadow-sm hover:shadow-md transition duration-300 hover:brightness-110 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-light dark:focus:ring-primary-dark"
+        >
+          Nueva solicitud
+        </button>
+      </div>
+
+      <app-lista-solicitudes
+        *ngIf="denuncia.id"
+        [idDenuncia]="denuncia.id"
+      ></app-lista-solicitudes>
+    </div>
+  </div>
+</div>

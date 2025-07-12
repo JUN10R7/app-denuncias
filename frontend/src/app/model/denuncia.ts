@@ -5,7 +5,9 @@ export interface Denuncia {
     lugar: string;
     categoria: string;
     estado?: string;
-    fechaIni?: string;
+    fecha?: string;
     usuario?: string;
+    idUsuario?: number;
     mod?: string;
+    idMod?: number;
 }

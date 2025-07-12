@@ -10,10 +10,10 @@ import java.util.List;
  * Contiene el identificador único, título descriptivo y descripción detallada del estado.
  *
  * @param id          identificador único del estado
- * @param titulo      título descriptivo del estado
- * @param descripcion descripción detallada del estado
+ * @param nombre      título descriptivo del estado
+ * @param description descripción detallada del estado
  */
-public record EstadoDTO(String id, String titulo, String descripcion) {
+public record EstadoDTO(String id, String nombre, String description) {
     /**
      * Obtiene una lista de todos los estados disponibles en el sistema, representados como instancias de {@code EstadoDTO}.
      *

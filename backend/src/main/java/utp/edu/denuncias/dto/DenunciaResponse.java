@@ -11,6 +11,7 @@ import java.util.List;
 
 @Builder
 public record DenunciaResponse(
+        Long id,
         String titulo,
         String description,
         String lugar,
@@ -18,7 +19,9 @@ public record DenunciaResponse(
         String estado,
         String fecha,
         String usuario,
-        String mod
+        Long idUsuario,
+        String mod,
+        Long idMod
 ) {
     /**
      * Convierte una instancia de la entidad Denuncia en un objeto DenunciaResponse.
@@ -28,14 +31,17 @@ public record DenunciaResponse(
      */
     public static DenunciaResponse from(Denuncia denuncia) {
         return DenunciaResponse.builder()
+                .id(denuncia.getId())
                 .titulo(denuncia.getTitulo())
                 .description(denuncia.getDescription())
                 .lugar(denuncia.getLugar())
                 .categoria(denuncia.getCategoria().name())
                 .estado(denuncia.getEstado().name())
                 .fecha(denuncia.getCreatedDate().toString())
-                .usuario(denuncia.getUsuario().getUsername())
-                .mod(denuncia.getModAsignado() == null ? "Sin asignar" : denuncia.getModAsignado().getUsername())
+                .usuario(denuncia.getUsuario().getNombres() + " " + denuncia.getUsuario().getApellidos())
+                .idUsuario(denuncia.getUsuario().getId())
+                .mod(denuncia.getModAsignado() == null ? null : denuncia.getModAsignado().getNombres() + " " + denuncia.getModAsignado().getApellidos())
+                .idMod(denuncia.getModAsignado() == null ? null : denuncia.getModAsignado().getId())
                 .build();
     }
     /**

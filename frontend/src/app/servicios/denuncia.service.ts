@@ -36,8 +36,8 @@ export class DenunciaService {
     return this.http.get<Denuncia[]>(`${this.baseUrl}/admin/mod/${id}`);
   }
 
-  createDenuncia(denuncia: Denuncia) {
-    return this.http.post<Denuncia>(`${this.baseUrl}/usuario`, denuncia);
+  createDenuncia(data: Partial<Denuncia>) {
+    return this.http.post<Denuncia>(`${this.baseUrl}/usuario`, data);
   }
 
   updateDenuncia(id: number, denuncia: Denuncia) {

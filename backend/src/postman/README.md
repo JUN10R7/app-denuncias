@@ -66,7 +66,7 @@ Puedes usar los siguientes usuarios al probar:
 
 - Crear solicitud (mod/admin)
 - Revisar solicitud (admin)
-- Obtener solicitudes por usuario, por estado
+- Obtener solicitudes por usuario y denuncia
 
 ### 5. 💬 Notificaciones
 

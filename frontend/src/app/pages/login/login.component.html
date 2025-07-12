@@ -1,0 +1,11 @@
+<h2>Iniciar sesión</h2>
+<div>
+  <input placeholder="Usuario" [(ngModel)]="username">
+</div>
+<div>
+  <input placeholder="Contraseña" [(ngModel)]="password" type="password">
+</div>
+<div>
+  <button (click)="login()">Ingresar</button>
+</div>
+<p style="color:red">{{ error }}</p>

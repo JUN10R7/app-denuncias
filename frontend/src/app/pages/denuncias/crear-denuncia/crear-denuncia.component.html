@@ -1,0 +1,88 @@
+<div class="p-6 max-w-xl mx-auto text-text-light dark:text-text-dark">
+  <h2 class="text-2xl font-bold mb-4 text-center">Nueva Denuncia</h2>
+
+  <form
+    [formGroup]="denunciaForm"
+    (ngSubmit)="crearDenuncia()"
+    class="space-y-5"
+  >
+    <div>
+      <label for="titulo" class="block mb-1 font-medium">Título</label>
+      <input
+        id="titulo"
+        type="text"
+        formControlName="titulo"
+        class="w-full px-3 py-2 border rounded bg-background-light dark:bg-background-dark border-muted-light dark:border-muted-dark focus:outline-none focus:ring-2 focus:ring-primary-light dark:focus:ring-primary-dark"
+      />
+      <p
+        *ngIf="
+          denunciaForm.get('titulo')?.invalid &&
+          denunciaForm.get('titulo')?.touched
+        "
+        class="text-red-500 text-sm mt-1"
+      >
+        El título es obligatorio.
+      </p>
+    </div>
+
+    <div>
+      <label for="description" class="block mb-1 font-medium"
+        >Descripción</label
+      >
+      <textarea
+        id="description"
+        rows="3"
+        formControlName="description"
+        class="w-full px-3 py-2 border rounded bg-background-light dark:bg-background-dark border-muted-light dark:border-muted-dark focus:outline-none focus:ring-2 focus:ring-primary-light dark:focus:ring-primary-dark"
+      ></textarea>
+      <p
+        *ngIf="
+          denunciaForm.get('description')?.invalid &&
+          denunciaForm.get('description')?.touched
+        "
+        class="text-red-500 text-sm mt-1"
+      >
+        La descripción es obligatoria.
+      </p>
+    </div>
+
+    <div>
+      <label for="lugar" class="block mb-1 font-medium">Lugar</label>
+      <input
+        id="lugar"
+        type="text"
+        formControlName="lugar"
+        class="w-full px-3 py-2 border rounded bg-background-light dark:bg-background-dark border-muted-light dark:border-muted-dark focus:outline-none focus:ring-2 focus:ring-primary-light dark:focus:ring-primary-dark"
+      />
+      <p
+        *ngIf="
+          denunciaForm.get('lugar')?.invalid &&
+          denunciaForm.get('lugar')?.touched
+        "
+        class="text-red-500 text-sm mt-1"
+      >
+        El lugar es obligatorio.
+      </p>
+    </div>
+
+    <div>
+      <label for="lugar" class="block mb-1 font-medium">Categoría</label>
+        <app-custom-select-enum
+          [items]="categorias"
+          [selectedId]="denunciaForm.get('categoria')?.value ?? undefined"
+          placeholder="Selecciona una categoría"
+          (selectionChange)="denunciaForm.get('categoria')?.setValue($event !== null ? $event.toString() : null)"
+        ></app-custom-select-enum>
+    </div>
+
+    <div class="flex justify-end">
+      <button
+        type="submit"
+        [disabled]="!denunciaForm.valid"
+        class="bg-primary-light dark:bg-primary-dark text-white px-6 py-2 rounded hover:opacity-90 transition disabled:opacity-50 disabled:cursor-not-allowed"
+      >
+        Crear Denuncia
+      </button>
+    </div>
+  </form>
+</div>

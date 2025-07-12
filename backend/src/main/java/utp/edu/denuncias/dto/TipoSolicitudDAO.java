@@ -11,7 +11,7 @@ import java.util.List;
  * Contiene información básica asociada al tipo de solicitud, como su nombre,
  * título descriptivo y descripción detallada.
  */
-public record TipoSolicitudDAO(String name, String titulo, String description) {
+public record TipoSolicitudDAO(String id, String nombre, String description) {
     /**
      * Obtiene una lista de todas las solicitudes disponibles en el sistema,
      * representadas como instancias de {@code TipoSolicitudDAO}.

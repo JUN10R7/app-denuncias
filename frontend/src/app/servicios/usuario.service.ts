@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { Usuario } from '../model/usuario';
+import { Notification } from '../model/notification';
 
 @Injectable({
   providedIn: 'root'
@@ -28,11 +29,11 @@ export class UsuarioService {
     return this.http.get<Usuario>(`${this.baseUrl}/mod/${id}`);
   }
 
-  updateUsuario(usuario: Usuario) {
-    return this.http.put<Usuario>(`${this.baseUrl}`, usuario);
+  updateUsuario(data: Partial<Usuario>) {
+    return this.http.put<Usuario>(`${this.baseUrl}`, data);
   }
 
-  updateUsuarioById(id: number, usuario: Usuario) {
+  activateUsuarioById(id: number, usuario: Usuario) {
     return this.http.put<Usuario>(`${this.baseUrl}/admin/${id}`, usuario);
   }
 

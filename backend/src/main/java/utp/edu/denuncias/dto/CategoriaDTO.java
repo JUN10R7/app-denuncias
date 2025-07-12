@@ -10,10 +10,10 @@ import java.util.List;
  * Contiene el identificador único, el título descriptivo y una descripción detallada de la categoría.
  *
  * @param id          identificador único de la categoría
- * @param titulo      título descriptivo de la categoría
- * @param descripcion descripción detallada de la categoría
+ * @param nombre      título descriptivo de la categoría
+ * @param description descripción detallada de la categoría
  */
-public record CategoriaDTO(String id, String titulo, String descripcion) {
+public record CategoriaDTO(String id, String nombre, String description) {
     /**
      * Obtiene una lista de todas las categorías disponibles en el sistema,
      * representadas como instancias de {@code CategoriaDTO}.

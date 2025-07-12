@@ -20,7 +20,10 @@ public record SolicitudResponse(
         String createdDate,
         String endDate,
         String autor,
-        String revisor
+        Long idDenuncia,
+        Long idAutor,
+        String revisor,
+        Long idRevisor
 ) {
     /**
      * Convierte una instancia de la entidad Solicitud a un objeto SolicitudResponse.
@@ -39,8 +42,11 @@ public record SolicitudResponse(
                 .tipoSolicitud(solicitud.getTipoSolicitud().name())
                 .createdDate(solicitud.getCreatedDate().toString())
                 .endDate(solicitud.getEndDate().toString())
-                .autor(solicitud.getAutor().getUsername())
-                .revisor(solicitud.getRevisor().getUsername())
+                .idDenuncia(solicitud.getDenuncia() == null ? null : solicitud.getDenuncia().getId())
+                .autor(solicitud.getAutor().getNombres() + " " + solicitud.getAutor().getApellidos())
+                .idAutor(solicitud.getAutor().getId())
+                .revisor(solicitud.getRevisor() == null ? null : solicitud.getRevisor().getNombres() + " " + solicitud.getRevisor().getApellidos())
+                .idRevisor(solicitud.getRevisor() == null ? null : solicitud.getRevisor().getId())
                 .build();
     }
 

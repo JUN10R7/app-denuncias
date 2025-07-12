@@ -1,0 +1,15 @@
+<div class="flex min-h-screen">
+  <app-sidebar></app-sidebar>
+  <div
+    *ngIf="isSidebarOpen && screenIsSmall"
+    class="fixed inset-0 bg-black bg-opacity-50 z-30"
+    (click)="closeSidebar()"
+  ></div>
+
+  <div class="flex-1 flex flex-col md:ml-56">
+    <app-header></app-header>
+    <main class="flex-1 overflow-y-auto bg-background-light dark:bg-background-dark transition-colors duration-300 scrollbar-hide">
+      <router-outlet></router-outlet>
+    </main>
+  </div>
+</div>

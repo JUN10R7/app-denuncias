@@ -1,0 +1,54 @@
+<div class="p-4 md:p-6 max-w-4xl mx-auto text-text-light dark:text-text-dark">
+  <h2 class="text-2xl font-semibold mb-6 text-center">
+    Lista de usuarios
+  </h2>
+
+  <div *ngIf="usuarios.length === 0" class="text-muted-light dark:text-muted-dark text-center">
+    No hay usuarios disponibles.
+  </div>
+
+  <div class="flex flex-col gap-4">
+    <div
+      *ngFor="let usuario of usuarios"
+      #cardRef
+      (click)="verDetalle(usuario.id)"
+      class="cursor-pointer bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark border-b border-muted-light dark:border-muted-dark px-4 py-3 hover:bg-muted-light/10 dark:hover:bg-muted-dark/10 transition-colors"
+    >
+      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-y-1">
+        <h3 class="text-base md:text-lg font-semibold text-primary-light dark:text-primary-dark">
+          {{ usuario.nombres }} {{ usuario.apellidos }}
+        </h3>
+        <span class="text-xs text-muted-light dark:text-muted-dark sm:ml-2 sm:text-sm">
+          ({{ usuario.username }})
+        </span>
+      </div>
+
+      <div class="flex flex-wrap gap-x-4 gap-y-1 mt-2 text-xs">
+        <span>
+          <strong class="text-muted-light dark:text-muted-dark">Email:</strong>
+          {{ usuario.email || 'No registrado' }}
+        </span>
+        <span>
+          <strong class="text-muted-light dark:text-muted-dark">DNI:</strong>
+          {{ usuario.dni || 'No especificado' }}
+        </span>
+        <span>
+          <strong class="text-muted-light dark:text-muted-dark">Rol:</strong>
+          {{ rolesMap.get(usuario.rol || '') || 'Desconocido' }}
+        </span>
+      </div>
+
+      <div class="mt-2 flex justify-end">
+        <span
+          class="px-2 py-0.5 text-xs font-medium rounded-full"
+          [ngClass]="{
+            'bg-green-100 text-green-600 dark:bg-green-900 dark:text-green-400': usuario.enabled,
+            'bg-red-100 text-red-600 dark:bg-red-900 dark:text-red-400': !usuario.enabled
+          }"
+        >
+          {{ usuario.enabled ? 'Activo' : 'Inactivo' }}
+        </span>
+      </div>
+    </div>
+  </div>
+</div>

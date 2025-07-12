@@ -37,9 +37,18 @@ export class AuthService {
     return !!this.getToken() && !this.isTokenExpired();
   }
 
-  isAdmin(): boolean {
-    return this.getRole()==='ROLE_ADMIN';
+  isUser(): boolean {
+    return this.getRole() === 'USER';
   }
+
+  isMod(): boolean {
+    return this.getRole() === 'MOD';
+  }
+
+  isAdmin(): boolean {
+    return this.getRole() === 'ADMIN';
+  }
+
 
   isTokenExpired(): boolean {
     const token = this.getToken();

@@ -1,0 +1,15 @@
+<div #navContainer class="flex flex-wrap justify-center gap-3 my-6">
+  <a
+    *ngFor="let ruta of rutas"
+    [routerLink]="ruta.ruta ? [basePath, ruta.ruta] : [basePath]"
+    [routerLinkActiveOptions]="{ exact: true }"
+    routerLinkActive="bg-primary-light dark:bg-primary-dark text-white shadow"
+    class="px-4 py-2 rounded-lg text-sm font-medium shadow transition-all duration-200
+           bg-background-light text-text-light
+           dark:bg-background-dark dark:text-text-dark
+           hover:bg-primary-light hover:text-white
+           dark:hover:bg-primary-dark dark:hover:text-white"
+  >
+    {{ ruta.nombre }}
+  </a>
+</div>

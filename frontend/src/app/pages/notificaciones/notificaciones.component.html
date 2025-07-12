@@ -1,0 +1,50 @@
+<div class="p-4 md:p-6 max-w-4xl mx-auto text-text-light dark:text-text-dark">
+  <h2 class="text-2xl font-semibold mb-6 text-center">
+    Notificaciones
+  </h2>
+
+  <div *ngIf="notificaciones.length === 0" class="text-muted-light dark:text-muted-dark text-center">
+    No hay notificaciones por mostrar.
+  </div>
+
+  <div class="flex flex-col gap-4">
+    <div
+      *ngFor="let noti of notificaciones"
+      #cardRef
+      (click)="irDetalle(noti)"
+      class="cursor-pointer border-l-4 px-4 py-3 rounded-r bg-background-light dark:bg-background-dark transition-colors shadow-sm hover:shadow-md rounded-md text-sm"
+      [ngClass]="{
+        'border-primary-light': noti.read,
+        'border-secondary-light': !noti.read
+      }"
+    >
+      <div class="space-y-1">
+        <h3 class="text-base md:text-lg font-semibold text-primary-light dark:text-primary-dark">
+          {{ noti.titulo }}
+        </h3>
+
+        <p class="text-muted-light dark:text-muted-dark leading-snug italic">
+          {{ noti.message }}
+        </p>
+
+        <div class="flex flex-wrap gap-x-4 gap-y-1 mt-1 text-xs">
+          <span *ngIf="noti.denunciaTitulo">
+            🔍 Denuncia: <strong>{{ noti.denunciaTitulo }}</strong>
+          </span>
+          <span *ngIf="noti.solicitudTitulo">
+            📩 Solicitud: <strong>{{ noti.solicitudTitulo }}</strong>
+          </span>
+        </div>
+
+        <div class="flex justify-between items-center mt-2 text-xs text-muted-light dark:text-muted-dark">
+          <span>📅 {{ noti.fecha | date: 'medium' }}</span>
+          <span
+            class="px-2 py-0.5 font-medium rounded-full text-[0.7rem] bg-primary-light/10 text-primary-light dark:bg-primary-dark/10 dark:text-primary-dark"
+          >
+            {{ noti.read ? 'Leída' : 'No leída' }}
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

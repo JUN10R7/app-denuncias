@@ -1,0 +1,6 @@
+:host {
+  display: block;
+  background-color: theme('colors.background.light');
+
+  @apply dark:bg-background-dark transition-colors duration-300;
+}

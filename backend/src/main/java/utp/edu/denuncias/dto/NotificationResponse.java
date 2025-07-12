@@ -20,7 +20,9 @@ public record NotificationResponse(
         boolean read,
         String fecha,
         String denunciaTitulo,
-        String solicitudTitulo
+        Long idDenuncia,
+        String solicitudTitulo,
+        Long idSolicitud
 ) {
     /**
      * Crea una instancia de NotificationResponse a partir de un objeto Notification.
@@ -36,7 +38,9 @@ public record NotificationResponse(
                 .read(notification.isVisto())
                 .fecha(notification.getCreatedDate().toString())
                 .denunciaTitulo(notification.getDenuncia() != null ? notification.getDenuncia().getTitulo() : null)
+                .idDenuncia(notification.getDenuncia() != null ? notification.getDenuncia().getId() : null)
                 .solicitudTitulo(notification.getSolicitud() != null ? notification.getSolicitud().getTitulo() : null)
+                .idSolicitud(notification.getSolicitud() != null ? notification.getSolicitud().getId() : null)
                 .build();
     }
     /**

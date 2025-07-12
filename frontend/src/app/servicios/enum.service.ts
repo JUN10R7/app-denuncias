@@ -4,7 +4,7 @@ import { environment } from '../../environments/environment';
 import { Enum } from '../model/enum';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class EnumService {
   private baseUrl = `${environment.apiUrl}/api/enum`;
@@ -26,4 +26,5 @@ export class EnumService {
   getTiposSolicitud() {
     return this.http.get<Enum[]>(`${this.baseUrl}/tiposSolicitud`);
   }
+
 }
