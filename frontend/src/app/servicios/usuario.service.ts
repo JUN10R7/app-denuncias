@@ -13,6 +13,10 @@ export class UsuarioService {
 
   constructor(private http: HttpClient) { }
 
+  registerUsuario(usuario: Usuario) {
+    return this.http.post<Usuario>(`${environment.apiUrl}/registro`, usuario);
+  }
+
   getUsuario() {
     return this.http.get<Usuario>(`${this.baseUrl}`);
   }

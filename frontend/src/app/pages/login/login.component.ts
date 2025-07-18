@@ -5,7 +5,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'app-login',          
+  selector: 'app-login',   
   imports: [CommonModule, FormsModule],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
@@ -26,6 +26,10 @@ export class LoginComponent {
       },
       error: () => this.error = 'Usuario o contraseña incorrectos'
     });
+  }
+
+  goToRegister() {
+    this.router.navigate(['/registro']);
   }
 
 }

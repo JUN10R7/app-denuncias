@@ -70,7 +70,7 @@ export class ListaSolicitudesComponent {
   }
 
   verDetalle(id: string): void {
-    this.router.navigate(['detalle', id], { relativeTo: this.route });
+    this.router.navigate(['/app/solicitudes/detalle',id?.toString()]);
   }
 
   private setSolicitudes() {

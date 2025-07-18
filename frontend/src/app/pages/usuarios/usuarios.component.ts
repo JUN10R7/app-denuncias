@@ -14,7 +14,8 @@ export class UsuariosComponent {
     rutas: { nombre: string, ruta: string }[] = [
         { nombre: 'Usuarios', ruta: '' },
         { nombre: 'Moderadores', ruta: 'mods' },
-        { nombre: 'Administradores', ruta: 'admins' }
+        { nombre: 'Administradores', ruta: 'admins' },
+        { nombre: 'Nuevo Usuario', ruta: 'nuevo'}
     ];
 
 }

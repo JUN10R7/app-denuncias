@@ -16,6 +16,7 @@ import { AdminGuard } from './auth/admin.guard';
 import { UsuariosComponent } from './pages/usuarios/usuarios.component';
 import { DetalleUsuarioComponent } from './pages/usuarios/detalle-usuario/detalle-usuario.component';
 import { ListaUsuariosComponent } from './pages/usuarios/lista-usuarios/lista-usuarios.component';
+import { RegistroComponent } from './pages/registro/registro.component';
 
 export const routes: Routes = [
     {path: '', redirectTo: '/login', pathMatch: 'full'},
@@ -24,7 +25,6 @@ export const routes: Routes = [
     {path: 'app', component: LayoutComponent, canActivate: [AuthGuard],
         children: [
             {path: '', loadComponent: () => import('./pages/home/home.component').then(m => m.HomeComponent)},
-            {path: 'ajustes', loadComponent: () => import('./pages/ajustes/ajustes.component').then(m => m.AjustesComponent)},
             {path: 'denuncias', component: DenunciasComponent, canActivate: [AuthGuard],
                 children: [
                     {path: 'crear', component: CrearDenunciaComponent},
@@ -36,6 +36,7 @@ export const routes: Routes = [
             },
             {path: 'usuarios', component: UsuariosComponent, canActivate: [AdminGuard],
                 children: [
+                    {path: 'nuevo', component: RegistroComponent},
                     {path: 'detalle/:id', component: DetalleUsuarioComponent},
                     {path: ':tipo', component: ListaUsuariosComponent},
                     {path: '', component: ListaUsuariosComponent}
