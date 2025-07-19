@@ -51,6 +51,15 @@ export class SidebarComponent {
   }
 
   toggleDark() {
-    document.documentElement.classList.toggle('dark');
+    const classList = document.documentElement.classList;
+    const isDark = classList.contains('dark');
+
+    if (isDark) {
+      classList.remove('dark');
+      localStorage.setItem('theme', 'light');
+    } else {
+      classList.add('dark');
+      localStorage.setItem('theme', 'dark');
+    }
   }
 }

@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { Usuario } from '../model/usuario';
 import { Notification } from '../model/notification';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -13,8 +14,10 @@ export class UsuarioService {
 
   constructor(private http: HttpClient) { }
 
-  registerUsuario(usuario: Usuario) {
-    return this.http.post<Usuario>(`${environment.apiUrl}/registro`, usuario);
+  registerUsuario(usuario: Usuario): Observable<string> {
+    return this.http.post(`${environment.apiUrl}/registro`, usuario, {
+      responseType: 'text',
+    });
   }
 
   getUsuario() {

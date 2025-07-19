@@ -1,0 +1,45 @@
+version: '3.8'
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: mysql_container
+    restart: always
+    ports:
+      - "3307:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: Phpstorm2020
+      MYSQL_DATABASE: denunciasdb
+    volumes:
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    build:
+      context: ./backend
+    container_name: backend_container
+    depends_on:
+      mysql:
+        condition: service_healthy
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/denunciasdb
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: Phpstorm2020
+      JWT_SECRET: yJavorqIvjDr5bqfORDlP3AItepjKlUXJ8uR8kmFsdTFgjQkoa3ynRbQk3TirdmUdpZU5k9JnCAsrdqFxbhG7kFkpPQ882MD6oT1F5eYtDoXxBPbrUXOkRSsdZQV5jEe7GFlooPXWZIqG4OiEF3SQ28nJXreENHkgFRgKGQS2oTMLE93ZCJKwUP7SIWKMZy3hlYQvQgOe4YWbVIc0ZYxM3lPIeXhT3QrvneQ6U87QVFBLUOj9HJcTkO1GquVZJvs
+    ports:
+      - "8080:8080"
+
+  frontend:
+    build:
+      context: ./frontend
+    container_name: frontend_container
+    depends_on:
+      - backend
+    ports:
+      - "4200:80"
+
+volumes:
+  mysql_data:
