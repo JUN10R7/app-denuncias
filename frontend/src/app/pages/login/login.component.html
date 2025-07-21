@@ -1,42 +1,57 @@
-<div class="min-h-screen flex items-center justify-center bg-background-light dark:bg-background-dark px-4">
-  <div class="w-full max-w-md bg-surface-light dark:bg-surface-dark rounded-2xl shadow-lg p-8 space-y-6">
+<div
+  #container
+  class="min-h-screen flex items-center justify-center bg-background-light dark:bg-background-dark px-4"
+>
+  <div
+    class="w-full max-w-md bg-surface-light dark:bg-surface-dark rounded-2xl shadow-lg p-8 space-y-6"
+  >
+    <h2
+      class="text-2xl font-bold text-center text-text-light dark:text-text-dark"
+    >
+      Iniciar sesión
+    </h2>
 
-    <h2 class="text-2xl font-bold text-center text-text-light dark:text-text-dark">Iniciar sesión</h2>
-
-    <div class="space-y-4">
-      <input 
+    <form (ngSubmit)="login()" class="space-y-4">
+      <input
+        #usernameInput
         [(ngModel)]="username"
+        (keydown.enter)="login()"
+        name="username"
         placeholder="Usuario"
         class="w-full p-3 rounded-xl border border-muted-light dark:border-muted-dark bg-white dark:bg-background-dark text-text-light dark:text-text-dark"
       />
 
-      <input 
+      <input
+        #passwordInput
         [(ngModel)]="password"
+        (keydown.enter)="login()"
+        name="password"
         placeholder="Contraseña"
         type="password"
         class="w-full p-3 rounded-xl border border-muted-light dark:border-muted-dark bg-white dark:bg-background-dark text-text-light dark:text-text-dark"
       />
-    </div>
 
-    <div class="text-center text-error-light dark:text-error-dark" *ngIf="error">
-      {{ error }}
-    </div>
+      <div class="space-y-3">
+        <button
+          type="submit"
+          [disabled]="!username.trim() || !password.trim()"
+          class="w-full bg-primary-light dark:bg-primary-dark text-white font-semibold py-2 rounded-xl transition-transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
+        >
+          Ingresar
+        </button>
 
-    <div class="space-y-3">
-      <button 
-        (click)="login()"
-        class="w-full bg-primary-light dark:bg-primary-dark text-white font-semibold py-2 rounded-xl hover:scale-105 transition-transform"
-      >
-        Ingresar
-      </button>
-
-      <button 
-        (click)="goToRegister()"
-        class="w-full border border-primary-light dark:border-primary-dark text-primary-light dark:text-primary-dark py-2 rounded-xl hover:bg-primary-light hover:text-white dark:hover:bg-primary-dark dark:hover:text-white transition"
-      >
-        Registrarse
-      </button>
-    </div>
-
+        <button
+          type="button"
+          (click)="goToRegister()"
+          class="w-full border border-primary-light dark:border-primary-dark text-primary-light dark:text-primary-dark py-2 rounded-xl hover:bg-primary-light hover:text-white dark:hover:bg-primary-dark dark:hover:text-white transition"
+        >
+          Registrarse
+        </button>
+      </div>
+    </form>
+  <div class="text-center text-error-light dark:text-error-dark" *ngIf="error">
+    {{ error }}
   </div>
+  </div>
+
 </div>

@@ -37,15 +37,6 @@ public enum TipoSolicitud {
             "Se solicita eliminar esta denuncia del sistema de forma permanente."
     ),
     /**
-     * Solicitud que representa la acción de archivar una denuncia.
-     * Utilizada para indicar que la denuncia debe marcarse como cerrada o resuelta,
-     * y ya no estará activa para seguimiento o gestión adicional.
-     */
-    ARCHIVAR_DENUNCIA(
-            "Solicitud de archivo de denuncia",
-            "Se solicita archivar esta denuncia como cerrada o resuelta."
-    ),
-    /**
      * Tipo de solicitud que indica la petición de reapertura de una denuncia
      * previamente archivada o cerrada. Se utiliza para retomar el tratamiento
      * de casos que requieren revisión o acciones adicionales.

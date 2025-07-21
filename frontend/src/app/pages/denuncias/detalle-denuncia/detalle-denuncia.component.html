@@ -1,4 +1,4 @@
-<div class="p-4 md:p-6 max-w-4xl mx-auto">
+<div *ngIf="mostrarContenido" class="p-4 md:p-6 max-w-4xl w-full mx-auto">
   <div
     class="bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark shadow-sm rounded-md p-5 space-y-4"
   >
@@ -10,7 +10,7 @@
       </p>
     </div>
 
-    <div class="space-y-2 text-sm md:text-base">
+    <div class="space-y-2 text-sm md:text-base pb-7 border-b border-muted-light dark:border-muted-dark">
       <p>
         <strong class="text-muted-light dark:text-muted-dark"
           >Descripción:</strong
@@ -77,27 +77,35 @@
       </ng-template>
     </div>
 
-    <div
-      *ngIf="isAdmin()"
-      class="pt-4 border-t border-muted-light dark:border-muted-dark"
-    >
-      <h3 class="text-lg font-semibold mb-4 text-center">
-        Solicitudes relacionadas
-      </h3>
-
-      <div class="flex justify-center mb-4">
+    <ng-container *ngIf="(getUsername() === denuncia.username) && (denuncia.estado == 'PENDIENTE')">
+      <div class="flex justify-center mb-4 pt-4">
         <button
-          (click)="crearSolicitud()"
+          (click)="editarDenuncia(denuncia.id)"
           class="px-5 py-2.5 rounded-lg text-sm font-semibold bg-primary-light text-white dark:bg-primary-dark dark:text-white shadow-sm hover:shadow-md transition duration-300 hover:brightness-110 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-light dark:focus:ring-primary-dark"
         >
-          Nueva solicitud
+          Editar denuncia
         </button>
       </div>
+    </ng-container>
 
-      <app-lista-solicitudes
-        *ngIf="denuncia.id"
-        [idDenuncia]="denuncia.id"
-      ></app-lista-solicitudes>
-    </div>
+    <ng-container *ngIf="isAdmin()">
+      <div class="pt-4">
+        <h3 class="text-lg font-semibold mb-4 text-center">
+          Solicitudes relacionadas
+        </h3>
+        <div class="flex justify-center mb-4">
+          <button
+            (click)="crearSolicitud()"
+            class="px-5 py-2.5 rounded-lg text-sm font-semibold bg-primary-light text-white dark:bg-primary-dark dark:text-white shadow-sm hover:shadow-md transition duration-300 hover:brightness-110 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-light dark:focus:ring-primary-dark"
+          >
+            Nueva solicitud
+          </button>
+        </div>
+        <app-lista-solicitudes
+          *ngIf="isAdmin() && denuncia.id"
+          [idDenuncia]="denuncia.id"
+        ></app-lista-solicitudes>
+      </div>
+    </ng-container>
   </div>
 </div>

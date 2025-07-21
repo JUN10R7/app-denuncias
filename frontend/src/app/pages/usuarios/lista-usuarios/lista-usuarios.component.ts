@@ -54,9 +54,9 @@ export class ListaUsuariosComponent {
     });
   }
 
-  verDetalle(id?: number) {
+  verDetalle(id: number | undefined) {
     if (id !== undefined) {
-      this.router.navigate(['/app/perfil', id]);
+      this.router.navigate(['/app/usuario', id]);
     }
   }
 

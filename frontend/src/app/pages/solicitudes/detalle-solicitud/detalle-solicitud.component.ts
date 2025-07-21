@@ -3,10 +3,12 @@ import { SolicitudService } from '../../../servicios/solicitud.service';
 import { Solicitud } from '../../../model/solicitud';
 import { ActivatedRoute, Route, Router } from '@angular/router';
 import { EnumService } from '../../../servicios/enum.service';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-detalle-solicitud.component',
-  imports: [],
+  imports: [CommonModule, FormsModule],
   templateUrl: './detalle-solicitud.component.html',
   styleUrl: './detalle-solicitud.component.scss'
 })
@@ -20,7 +22,8 @@ export class DetalleSolicitudComponent {
   constructor(
     private service: SolicitudService,
     private route: ActivatedRoute,
-    private enumService: EnumService
+    private enumService: EnumService,
+    private router: Router
   ) { };
 
   ngOnInit(): void {
@@ -45,5 +48,24 @@ export class DetalleSolicitudComponent {
     this.enumService.getEstados().subscribe((estados) => {
       estados.forEach((est) => this.estadosMap.set(est.id, est.nombre));
     });
+  }
+
+  verPerfil(username: string): void {
+    this.router.navigate(['/perfil', username]);
+  }
+
+  isAdmin(): boolean {
+    return localStorage.getItem('rol') === 'ADMIN';
+  }
+
+  editarSolicitud(id: number): void {
+    this.router.navigate(['/solicitudes/editar', id]);
+  }
+
+  aceptarSolicitud() {
+    
+  }
+  rechazarSolicitud() {
+
   }
 }

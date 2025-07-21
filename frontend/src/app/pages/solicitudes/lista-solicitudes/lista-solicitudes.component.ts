@@ -70,7 +70,7 @@ export class ListaSolicitudesComponent {
   }
 
   verDetalle(id: string): void {
-    this.router.navigate(['/app/solicitudes/detalle',id?.toString()]);
+    this.router.navigate(['/app/solicitud/',id?.toString()]);
   }
 
   private setSolicitudes() {

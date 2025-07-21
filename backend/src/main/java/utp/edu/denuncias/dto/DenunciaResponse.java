@@ -19,6 +19,7 @@ public record DenunciaResponse(
         String estado,
         String fecha,
         String usuario,
+        String username,
         Long idUsuario,
         String mod,
         Long idMod
@@ -39,6 +40,7 @@ public record DenunciaResponse(
                 .estado(denuncia.getEstado().name())
                 .fecha(denuncia.getCreatedDate().toString())
                 .usuario(denuncia.getUsuario().getNombres() + " " + denuncia.getUsuario().getApellidos())
+                .username(denuncia.getUsuario().getUsername())
                 .idUsuario(denuncia.getUsuario().getId())
                 .mod(denuncia.getModAsignado() == null ? null : denuncia.getModAsignado().getNombres() + " " + denuncia.getModAsignado().getApellidos())
                 .idMod(denuncia.getModAsignado() == null ? null : denuncia.getModAsignado().getId())

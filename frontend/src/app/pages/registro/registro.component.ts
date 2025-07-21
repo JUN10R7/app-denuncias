@@ -105,4 +105,8 @@ export class RegistroComponent {
   loadRoles(): void {
     this.enumService.getRoles().subscribe((roles) => (this.roles = roles));
   }
+
+  goToLogin() {
+    this.router.navigate(['app/login']);
+  }
 }

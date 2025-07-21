@@ -33,7 +33,7 @@ export class UsuarioService {
   }
 
   getUsuarioById(id: number) {
-    return this.http.get<Usuario>(`${this.baseUrl}/mod/${id}`);
+    return this.http.get<Usuario>(`${this.baseUrl}/${id}`);
   }
 
   updateUsuario(data: Partial<Usuario>) {

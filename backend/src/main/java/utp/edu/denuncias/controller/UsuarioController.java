@@ -46,9 +46,8 @@ public class UsuarioController {
      * @param id identificador único del usuario que se desea buscar
      * @return un {@link ResponseEntity} que contiene el objeto {@link Usuario} correspondiente al identificador proporcionado
      */
-    @GetMapping("/mod/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<UsuarioResponse> listarUsuario(@PathVariable Long id) {
-        System.out.println("Buscando usuario con id: " + id);
         return ResponseEntity.ok(usuarioService.findById(id));
     }
 

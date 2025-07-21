@@ -7,6 +7,7 @@ import java.util.List;
 
 @Builder
 public record UsuarioResponse(
+        Long id,
         String nombres,
         String apellidos,
         String username,
@@ -23,6 +24,7 @@ public record UsuarioResponse(
      */
     public static UsuarioResponse from(Usuario usuario) {
         return UsuarioResponse.builder()
+                .id(usuario.getId())
                 .nombres(usuario.getNombres())
                 .apellidos(usuario.getApellidos())
                 .username(usuario.getUsername())

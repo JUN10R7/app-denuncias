@@ -6,7 +6,6 @@ import { EnumService } from '../../../servicios/enum.service';
 import { ListaSolicitudesComponent } from '../../solicitudes/lista-solicitudes/lista-solicitudes.component';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../../auth/auth.service';
-import gsap from 'gsap';
 
 @Component({
   selector: 'app-detalle-denuncia.component',
@@ -20,6 +19,7 @@ export class DetalleDenunciaComponent {
   id: string = '';
   categoriasMap = new Map<string, string>();
   estadosMap = new Map<string, string>();
+  mostrarContenido = false;
 
   constructor(
     private service: DenunciaService,
@@ -40,14 +40,7 @@ export class DetalleDenunciaComponent {
   setDenuncia() {
     this.service.getDenunciaById(Number(this.id)).subscribe((denuncia) => {
       this.denuncia = denuncia;
-      setTimeout(() => {
-        gsap.from('.bg-background-light, .bg-background-dark', {
-          opacity: 0,
-          y: 20,
-          duration: 0.5,
-          ease: 'power2.out',
-        });
-      }, 50);
+      this.mostrarContenido = true;
     });
   }
 
@@ -73,5 +66,14 @@ export class DetalleDenunciaComponent {
 
   isAdmin(): boolean {
     return this.auth.isAdmin();
+  }
+
+  getUsername() {
+    return this.auth.getUsername();
+  }
+
+  editarDenuncia(id: number | undefined) {
+    if (id === undefined) return;
+    this.router.navigate(['/app/denuncias/editar', id])
   }
 }

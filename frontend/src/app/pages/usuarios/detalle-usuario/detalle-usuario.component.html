@@ -1,1 +1,48 @@
-<p>detalle-usuario.component works!</p>
+<div
+  #perfilContainer
+  class="max-w-3xl mx-auto p-6 mt-6 rounded-2xl shadow-xl bg-surface-light dark:bg-surface-dark text-text-light dark:text-text-dark"
+  id="perfilContainer"
+>
+  <h2
+    class="text-3xl font-bold mb-6 text-center text-primary-light dark:text-primary-dark"
+  >
+    Perfil de Usuario
+  </h2>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-base leading-relaxed">
+    <div>
+      <p class="text-muted-light dark:text-muted-dark">Nombres</p>
+      <p>{{ usuario.nombres || "No especificado" }}</p>
+    </div>
+
+    <div>
+      <p class="text-muted-light dark:text-muted-dark">Apellidos</p>
+      <p>{{ usuario.apellidos || "No especificado" }}</p>
+    </div>
+
+    <div>
+      <p class="text-muted-light dark:text-muted-dark">Nombre de usuario</p>
+      <p>{{ usuario.username || "No especificado" }}</p>
+    </div>
+
+    <div>
+      <p class="text-muted-light dark:text-muted-dark">Correo electrónico</p>
+      <p>{{ usuario.email || "No especificado" }}</p>
+    </div>
+
+    <div>
+      <p class="text-muted-light dark:text-muted-dark">DNI</p>
+      <p>{{ usuario.dni || "No especificado" }}</p>
+    </div>
+
+    <div>
+      <p class="text-muted-light dark:text-muted-dark">Rol</p>
+      <p>{{ rolesMap.get(usuario.rol || "") || "No especificado" }}</p>
+    </div>
+
+    <div>
+      <p class="text-muted-light dark:text-muted-dark">Estado</p>
+      <p>{{ usuario.enabled ? "Activo" : "Inactivo" }}</p>
+    </div>
+  </div>
+</div>

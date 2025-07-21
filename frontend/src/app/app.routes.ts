@@ -30,6 +30,8 @@ export const routes: Routes = [
                     {path: 'crear', component: CrearDenunciaComponent},
                     {path: 'detalle/:id', component: DetalleDenunciaComponent},
                     {path: 'detalle/**', component: ListaDenunciasComponent},
+                    {path: 'editar/:id', component: CrearDenunciaComponent},
+                    {path: 'editar/**', component: ListaDenunciasComponent},
                     {path: ':tipo', component: ListaDenunciasComponent},
                     {path: '', component: ListaDenunciasComponent}
                 ]
@@ -37,19 +39,21 @@ export const routes: Routes = [
             {path: 'usuarios', component: UsuariosComponent, canActivate: [AdminGuard],
                 children: [
                     {path: 'nuevo', component: RegistroComponent},
-                    {path: 'detalle/:id', component: DetalleUsuarioComponent},
                     {path: ':tipo', component: ListaUsuariosComponent},
                     {path: '', component: ListaUsuariosComponent}
                 ]
             },
+            {path: 'usuario/:id', component: DetalleUsuarioComponent},
+            {path: 'usuario/**', redirectTo: ''},
             {path: 'solicitudes', component: SolicitudesComponent, canActivate: [AuthNoUserGuard],
                 children: [
                     {path: 'crear', component: CrearSolicitudComponent},
-                    {path: 'detalle/:id', component: DetalleSolicitudComponent},
                     {path: ':tipo', component: ListaSolicitudesComponent},
                     {path: '', component: ListaSolicitudesComponent}
                 ]
             },
+            {path: 'solicitud/:id', component: DetalleSolicitudComponent},
+            {path: 'solicitud/**', component: DetalleSolicitudComponent},
             {path: 'notificaciones', component: NotificacionesComponent, canActivate: [AuthGuard]},
             {path: '**', redirectTo: '', pathMatch: 'full'}
         ]

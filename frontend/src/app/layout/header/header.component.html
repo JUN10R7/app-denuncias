@@ -1,12 +1,14 @@
-<header class="flex items-center px-4 py-6 bg-surface-light dark:bg-surface-dark">
-  <div class="flex items-center gap-3">
+<header
+  class="flex items-center justify-between px-6 py-6 bg-surface-light dark:bg-surface-dark shadow-md transition-all duration-300"
+>
+  <div class="flex items-center gap-4">
     <button
       (click)="toggleSidebar()"
-      class="md:hidden text-primary-light dark:text-primary-dark hover:opacity-80 transition-opacity duration-150"
+      class="md:hidden text-primary-light dark:text-primary-dark hover:scale-110 hover:opacity-80 transition-all duration-200"
       aria-label="Menú"
     >
       <svg
-        class="w-6 h-6"
+        class="w-7 h-7 md:w-6 md:h-6"
         fill="none"
         stroke="currentColor"
         stroke-width="2"
@@ -16,8 +18,10 @@
       </svg>
     </button>
 
-    <h1 class="text-lg font-bold text-text-light dark:text-text-dark">
-      Denuncias Ciudadanas
-    </h1>
+<h1
+  class="text-lg font-bold text-text-light dark:text-text-dark whitespace-nowrap overflow-hidden text-ellipsis min-w-0"
+>
+  Denuncias Ciudadanas
+</h1>
   </div>
 </header>

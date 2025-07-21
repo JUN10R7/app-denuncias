@@ -597,12 +597,13 @@
 											}
 										},
 										"url": {
-											"raw": "localhost:8080/usuario",
+											"raw": "localhost:8080/api/usuario",
 											"host": [
 												"localhost"
 											],
 											"port": "8080",
 											"path": [
+												"api",
 												"usuario"
 											]
 										}
@@ -828,14 +829,15 @@
 										"method": "GET",
 										"header": [],
 										"url": {
-											"raw": "localhost:8080/mod/usuario",
+											"raw": "localhost:8080/api/usuario/mod",
 											"host": [
 												"localhost"
 											],
 											"port": "8080",
 											"path": [
-												"mod",
-												"usuario"
+												"api",
+												"usuario",
+												"mod"
 											]
 										}
 									},
@@ -1097,14 +1099,15 @@
 										"method": "GET",
 										"header": [],
 										"url": {
-											"raw": "localhost:8080/admin/usuario",
+											"raw": "localhost:8080/api/usuario/admin",
 											"host": [
 												"localhost"
 											],
 											"port": "8080",
 											"path": [
-												"admin",
-												"usuario"
+												"api",
+												"usuario",
+												"admin"
 											]
 										}
 									},
@@ -2937,12 +2940,13 @@
 										"method": "GET",
 										"header": [],
 										"url": {
-											"raw": "localhost:8080/usuario/notificaciones",
+											"raw": "localhost:8080/api/usuario/notificaciones",
 											"host": [
 												"localhost"
 											],
 											"port": "8080",
 											"path": [
+												"api",
 												"usuario",
 												"notificaciones"
 											]
