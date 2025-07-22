@@ -47,11 +47,6 @@ public class SolicitudService {
     private final DenunciaRepository denunciaRepository;
 
     /**
-     * Servicio que gestiona las operaciones relacionadas con denuncias.
-     */
-    private final DenunciaService denunciaService;
-
-    /**
      * Servicio de notificaciones utilizado para enviar alertas o mensajes
      * relacionados con las operaciones realizadas en el sistema.
      * Este servicio permite informar a los usuarios sobre eventos importantes
@@ -181,36 +176,6 @@ public class SolicitudService {
         solicitud.setMsg(request.mensajeRespuesta());
         solicitud.setRevisor(revisor);
         solicitud.setEndDate(LocalDateTime.now());
-
-        if (request.aprobado()) {
-            var tipo = solicitud.getTipoSolicitud();
-            var idDenuncia = solicitud.getDenuncia() == null ? null : solicitud.getDenuncia().getId();
-
-            switch (tipo) {
-                case CAMBIO_ESTADO:
-                    try {
-                        Estado nuevoEstado = Estado.valueOf(request.mensajeRespuesta().toUpperCase().trim());
-                        denunciaService.cambiarEstadoDenuncia(idDenuncia, nuevoEstado.name());
-                    } catch (IllegalArgumentException e) {
-                        throw new RuntimeException("Estado inválido proporcionado: " + request.mensajeRespuesta());
-                    }
-                    break;
-
-                case ELIMINAR_DENUNCIA:
-                    denunciaService.eliminarDenuncia(idDenuncia);
-                    break;
-                case REABRIR_DENUNCIA:
-                    denunciaService.cambiarEstadoDenuncia(idDenuncia, Estado.EN_PROCESO.name());
-                    break;
-                case ASIGNAR_MODERADOR:
-                    denunciaService.asignarModerador(idDenuncia, request.idModerador());
-                    break;
-
-                case INTERN_COMMUNICATION:
-                    break;
-            }
-        }
-
         notificationService.notificar(
                 solicitud.getAutor(),
                 "Su solicitud ha sido " + (request.aprobado() ? "APROBADA." : "RECHAZADA."),

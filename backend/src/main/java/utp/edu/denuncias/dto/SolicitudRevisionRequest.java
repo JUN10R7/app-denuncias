@@ -11,18 +11,9 @@ import jakarta.validation.constraints.NotNull;
  * @param mensajeRespuesta mensaje opcional que describe la razón de la aprobación o rechazo
  */
 public record SolicitudRevisionRequest(
-
         Long id,
-
-        Long idDenuncia,
-
-        Long idModerador,
-
-        Long idMod,
-
         @NotNull(message = "Debes indicar si es aprobación o rechazo")
         boolean aprobado,
-
         @NotNull(message = "El mensaje es obligatorio")
         String mensajeRespuesta
 ) {}
